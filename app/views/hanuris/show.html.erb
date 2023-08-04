@@ -1,0 +1,94 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <h1>Show <small>hanuri</small></h1>
+
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><%= link_to "Hanuris", hanuris_path %></li>
+      <li class="active">Show</li>
+    </ol>
+  </section>
+<% end %>
+
+<div class='hanuris'>
+  <div class="board_head">
+    <div class="board_name">
+      <h2><i class="fa fa-list-alt" aria-hidden="true"></i>
+        <a href="/hanuris">한류링크</a></h2>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="hanuri_show box box-primary">
+        
+        <div class="box-body">
+          
+          <div class="row">
+          
+            <div class="col-md-3">
+
+              <div class="thumb">
+                <div class="imgwrap">
+                  <% if @hanuri.image.url %>
+                  <%= image_tag(@hanuri.image.url, class:"") %>
+                  <% else %>
+                  <%= image_tag("/common/flags/#{@hanuri.country.downcase}.png") %>
+                  <% end %>
+                </div>
+              </div>
+            
+            </div>
+            
+            <div class="hanuri_detail col-md-9">
+            
+              <div class="title">
+                <h2><%= @hanuri.title %> <% if @hanuri.hidden%><i class='fa fa-eye-slash'></i><% end %></h2>
+              </div>
+
+              <div class="info">
+                <div class="country"><%= country_name(@hanuri.country) %></div>
+                
+                <% if @hanuri.url1 != "" %>
+                <div class="link"><%= link_to(@hanuri.url1, @hanuri.url1, target: "_blank") %></div>
+                <% end %>
+                <% if @hanuri.url2 != "" %>
+                <div class="link"><%= link_to(@hanuri.url2, @hanuri.url2, target: "_blank") %></div>
+                <% end %>
+                <% if @hanuri.url3 != "" %>
+                <div class="link"><%= link_to(@hanuri.url3, @hanuri.url2, target: "_blank") %></div>
+                <% end %>
+              </div>
+              <div class="desc">
+                <%= auto_link(nl2br(@hanuri.description), :html => { :target => :_blank }) do |text|
+                    truncate(text, :length => 50)
+                  end %>
+              </div>
+            
+            </div>
+            
+          </div>
+          
+        </div>
+        
+        <div class="clearfix"></div>
+        
+        <div class="box-footer">
+          <div class="box-tools ">
+            <a class="btn btn-primary btn-sm" href="<%= hanuris_path({page:@page}) %>">전체 목록</a>
+            <a class="btn btn-sm btn-link" href="<%= hanuris_path({country: @hanuri.country}) %>">해당국가 목록</a>
+            <%= link_to edit_hanuri_path(@hanuri), :class => "btn btn-link btn-sm" do %>
+              수정
+            <% end %>
+            <%= link_to "삭제", @hanuri, method: :delete, data: { confirm: "삭제하겠습니까?" }, class: "btn btn-link btn-sm" %>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,95 @@
+<div class="profile">
+
+  <h2 class="title">회원 정보</h2>
+
+  <ul class="nav nav-tabs">
+      <li class="active"><a href="#" title="회원정보">기본정보</a></li>
+	  <!--
+      <li><a href="" title="나의 작성글">나의 작성글</a></li>
+      <li><a href="" title="나의 스크랩">스크랩</a></li>
+      <li><a href="" title="내가 작성한 댓글">댓글</a></li>
+	  -->
+  </ul>
+
+  <div class="info">
+
+    <div class="form-horizontal">
+      
+      <div class="page-header">
+        <h4>기본정보</h4>
+      </div>
+
+      <%= simple_form_for(@userdata, url: profile_info_path) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= f.error_notification message: f.object.errors[:subject].to_sentence if f.object.errors[:subject].present? %>
+        <%= f.error_notification message: f.object.errors[:content].to_sentence if f.object.errors[:content].present? %>
+        
+		<!--
+        <div class="form-group">
+          <label class="col-sm-3 control-label">이메일 주소</label>
+          <div class="col-sm-9">
+            <%#= f.input :email, label: false, placeholder: "", input_html: {  } %>
+          </div>
+        </div>
+		-->
+        
+		<!--
+        <div class="form-group">
+          <label class="col-sm-2 control-label">이름</label>
+          <div class="col-sm-9">
+            <%#= f.input :name, label: false, placeholder: "", input_html: {  } %>
+          </div>
+        </div>
+		-->
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label">닉네임</label>
+          <div class="col-sm-9">
+            <%= f.input :nick, label: false, placeholder: "", input_html: {  }, class: "" %>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="col-sm-2 control-label">아바타</label>
+          <div class="col-sm-9">
+            <%= f.file_field :avatar, label: false, multiple: false %><br>            
+            <p>(200x200으로 자동 변환됩니다.)</p>
+            <% if @userdata.avatar.url %>
+            <%= image_tag(@userdata.avatar.url, class:'avatar_image') %>
+            <p><label><%= f.check_box :remove_avatar %>삭제</label></p>
+            <% end %>            
+          </div>
+        </div>
+		
+		<div class="form-group">
+          <label class="col-sm-2 control-label">서명</label>
+          <div class="col-sm-9">
+            <%= f.text_area :note, label: false, placeholder: "", rows: 5, maxlength: 250, input_html: {  }, class: 'form-control' %>
+          </div>
+        </div>      
+      		
+		<div class="form-group">
+          <label class="col-sm-2 control-label">전체메일 받음</label>
+          <div class="col-sm-9">
+            <%= f.check_box :mailing, label: false, placeholder: "", input_html: {  }  %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-9">
+            <%= f.button :submit, value: '입력', 'data-disable-with': '입력중...', class:'btn btn-primary  ' %>
+          </div>
+        </div>
+        
+      <% end %>
+      
+	  <br>
+	  <br>
+	  
+    </div>
+   
+  </div>
+
+</div>

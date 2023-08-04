@@ -1,0 +1,35 @@
+<li id="comment_<%=comment.id %>" data-id="<%=comment.id %>" class="comment_item comment_group_<%=comment.gid %> childof_<%= comment.parent_id %> depth<%=comment.depth%> <%= comment.deleted == 1 ? "deleted" : "" %>">
+  <% user = comment.user %>
+  <% if !mobilemode? %>
+    <%= render partial:"comments/comment_item_action", locals: { 
+        comment: comment, 
+        parent_id:comment.id, parent_depth:comment.depth } %>
+  <% end %>
+  <div class="comment_item_action2">
+    <% if cached_current_user&.admin? %>
+      <%= link_to (raw '<i class="fa fa-trash-o"></i> 삭제'), [comment.post, comment, force:1], method: :delete, remote: true, data: { confirm: "삭제할까요?" } %>
+    <% end %>
+  </div>
+  <div class="reply_img"></div>
+  <div class="comment_item_avatar">
+	<%= render partial:"common/display_avatar", locals: { userdata: user&.data } %>
+  </div>
+  <div class="comment_item_header">
+    <span class="user"><div class="level_icon lv<%=user&.level%>"></div><%= user&.nick %></span>
+    <span class="time"><%= timestr(comment.created_at, 4) %></span>
+    <span class="favor">추천: <span><%= comment.favor_cnt %></span></span>
+  </div>
+  <div class="comment_item_body">
+    <%= render partial:"comments/comment_item_body", locals: { comment: comment } %>
+  </div>
+  <% if mobilemode? %>
+    <%= render partial:"comments/comment_item_action", locals: { 
+        comment: comment, 
+        parent_id:comment.id, parent_depth:comment.depth } %>
+  <% end %>
+  <div class="comment_form_reply" style="display:none;">
+    <%= render partial:"comments/form_reply", locals: { 
+       comment: @post.comments.new, 
+       parent_id:comment.id, parent_depth:comment.depth } %>
+  </div>
+</li>

@@ -1,0 +1,1 @@
+tinymce.addI18n("de",{"Line Height":"Zeilen H\xf6he"});

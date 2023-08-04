@@ -1,0 +1,9 @@
+<ul id="comments_list_<%=@post.id%>">
+<% comments = @post.comments; 
+   logged_in = cached_current_user.nil? ? "" : "guest" %>
+<% comments.each do |comment| %>
+  <% cache comment, virtual_path: "#{comment.cache_key}/#{comment.updated_at.to_i}#/show/#{logged_in}", expires_in: 1.hour do %>
+    <%= render comment %>
+  <% end %>
+<% end %>
+</ul>

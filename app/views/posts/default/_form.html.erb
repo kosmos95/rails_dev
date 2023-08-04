@@ -1,0 +1,90 @@
+<div class="postedit_form">
+<%= simple_form_for(@post, url: @post.id ? update_board_post_path(@bid, @post.id) : create_board_post_path(@bid) ) do |f| %>
+
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= f.error_notification message: f.object.errors[:subject].to_sentence if f.object.errors[:subject].present? %>
+  <%= f.error_notification message: f.object.errors[:content].to_sentence if f.object.errors[:content].present? %>
+  
+  <%= f.input :board_id, :as => :hidden, :input_html => { :value => @board_id } %>
+  <%= f.input :bid, :as => :hidden, :input_html => { :value => @bid } %>
+  <%= f.input :user_id, :as => :hidden, :input_html => { :value => cached_current_user.id } %>
+  <%= f.input :files, :as => :hidden %>
+  <% if !@parent_post.nil? %>
+    <%= f.input :reply, :as => :hidden, :input_html => { :value => @reply } %>
+    <%= f.input :parent_post_id, :as => :hidden, :input_html => { :value => @parent_post.id } %>
+  <% end %>
+  <%= f.input :html, :as => :hidden, :input_html => { :value => "html" } %>
+  <%= hidden_field_tag :page, params[:page] %>
+
+  <div class="form-inputs">
+    <div class="postwrite">
+      <table>
+        <tbody>
+          <% if @category_arr.length > 0 %>
+          <tr>
+            <td class="td1">분류</td>
+            <td class="td2">
+            <%= select_tag("post[category]", options_for_select(@category_select_arr, @category)) %>
+            </td>
+          </tr>
+          <% end %>
+          <tr>
+            <td class="td1">제목</td>
+            <td class="td2">
+              <%= f.input :subject, label: false, input_html: {
+                value: @reply ? 
+                  (@parent_post.present? ? "Re: #{@parent_post.subject}" : "") :
+                  @post.subject }
+              %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <%= f.input_field :notice, as: :boolean, boolean_style: :inline %> 
+              <%= f.label :notice, "공지" %> &nbsp;&nbsp;
+              <%= f.input_field :hidden, as: :boolean, boolean_style: :inline %> 
+              <%= f.label :hidden, "비밀글" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="editbox">
+        <%= f.text_area :content, :class => "tinymce", :rows => 20, :cols => 80 %>
+        <%= tinymce_with_default_option %>
+      </div>
+
+      <div class="editbox_options">      
+        <% if mobilemode? %>
+          <div class="desc">
+          <p>* 이미지 첨부 대화창 떴을 때, 제목 부분을 눌러 이동 가능합니다. </p>
+          </div>
+        <% end %>
+        
+        <% #post_content = @post.post_content; %>
+          <%= f.input :source, required: false, input_html: { :value => post&.source, :maxlength => 255 }, label: "출처" %>
+          <% self_produced_str = "작성자 작성" %>
+          <%= check_box_tag "source_options", self_produced_str, @post.source == self_produced_str %>
+          <%= label_tag "source_options", self_produced_str %>
+        </div>
+
+        <div class="bottombox">
+          <% if @recaptcha_enabled %>
+            <%= recaptcha_tags(turbolinks: true, script_async: true ) %>
+            <%#= recaptcha_v3(action: "post_write", turbolinks: true, script_async: true ) %>
+            <%#= invisible_recaptcha_tags text: "" %>
+            <br>
+            <p style="text-align:left; font-size: 11px; ">
+            * 꼭 체크해주세요. 작성하신 소중한 글이 날라갈 수 있습니다. 
+            </p>
+            <br>
+          <% end %>
+          <button type="submit button" class="btn btn-primary">확인</button>
+          <button type="button" class="btn btn-link" data-myacttype="goto" data-url="<%= board_posts_path() %>" data-msg="게시물 작성을 취소하겠습니까?">목록으로</button>
+        </div>
+      </div>
+      
+  </div>
+<% end %>
+</div>

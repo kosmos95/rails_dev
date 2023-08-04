@@ -1,0 +1,16 @@
+user_signup:
+  limit: 20
+  period: 3600
+
+user_signin:
+  limit: 1
+  period: 60
+
+post_create:
+  limit: 1
+  period: 60
+  
+comment_create:
+  limit: 1
+  period: 30
+  

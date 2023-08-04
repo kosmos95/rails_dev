@@ -1,0 +1,22 @@
+# Add configuration values here, as shown below.
+#
+# pusher_app_id: "2954"
+# pusher_key: 7381a978f7dd7f9a1117
+# pusher_secret: abdc3b896a0ffb85d373
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+
+Facebook_Key: "515050272593862"
+Facebook_Secret: "5a055cd7e0240f32bbe52618084d8559"
+
+Google_Key: "1010521804242-hee9n648vodq15ighobl3v5js3efoqnl.apps.googleusercontent.com"
+Google_Secret: "UPNeyHX42HIIJ9yTvoMczilV"
+
+MAX_READ_WITHOUT_LOGIN: '0'
+
+DB_USERNAME: root 
+DB_PASSWORD: 1234

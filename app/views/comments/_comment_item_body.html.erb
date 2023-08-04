@@ -1,0 +1,13 @@
+<%# reply_icon1 = (comment.depth > 0) ? "<span class='reply_icon'>⮡</span>": "" %>  
+<% if comment.deleted == 1 %>
+ <div class="msg">삭제된 댓글입니다.</div>
+<% else %>
+  <% if comment.image.url && comment.img_pos == 0 %>
+  <div class="cmt_img img_top"><img src="<%= image_url_fix(comment.image.url) %>"></div>
+  <% end %>
+  <%#= raw reply_icon1 %>
+  <%= simple_format("#{comment.content}"); %>
+  <% if comment.image.url && comment.img_pos == 1 %>
+  <div class="cmt_img img_bottom"><img src="<%= image_url_fix(comment.image.url) %>"></div>
+  <% end %>
+<% end %>

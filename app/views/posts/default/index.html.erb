@@ -1,0 +1,7 @@
+<%= render "posts/#{@skin}/head", board: @board %>
+
+<%= render (pcmode? ? "posts/#{@skin}/list" : "posts/#{@skin}/list_m"), mode: "index" %>
+
+<%= render "posts/#{@skin}/script" %>
+
+<%= render "posts/#{@skin}/bottom" %>

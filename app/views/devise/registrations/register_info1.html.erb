@@ -1,0 +1,32 @@
+<style>
+.form-group.user_nick { margin-bottom:5px; }
+.message { margin-bottom:10px; }
+.result { x-font-size: 12px; color:#6666ff; font-weight:bold; }
+.result .fail { color:#ff7373; }
+.invalid-feedback { x-font-size: 12px; color:#ff7373; font-weight:bold; }
+.check_btn { color:#fff; background:#516B82; padding: 3px 7px 3px; x-font-weight:bold; margin-right:5px; cursor:pointer;  }
+</style>
+<div class="devise">
+
+	<div class="register">
+
+		<h2>가입 성공</h2>
+
+		<%= resource_name %> 
+		<%#= simple_form_for(resource_name, as: resource_name, url: registration_path(resource_name)) do |f| %>
+		  
+		  <%#= f.error_notification %>
+
+		  <div class="form-inputs">
+			
+			
+		  </div>
+
+		  <div class="form-actions">
+			<%#= f.button :submit, "가입 신청", class: "btn btn-primary" %>
+		  </div>
+		  
+		<%# end %>
+
+	</div>
+</div>

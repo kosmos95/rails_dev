@@ -1,0 +1,53 @@
+<h3>게시판 정보</h3>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>게시판ID(bid):</strong>
+  <%= @board.bid %>
+</p>
+
+<p>
+  <strong>게시판 그룹:</strong>
+  <%= @board.board_group.name %>
+</p>
+
+<p>
+  <strong>이름:</strong>
+  <%= @board.name %>
+</p>
+
+<p>
+  <strong>카테고리:</strong>
+  <%= @board.category %>
+</p>
+
+<p>
+  <strong>게시판 관리자:</strong><br>
+  <%= nl2br @board.board_managers %>
+</p>
+
+<h3>일반 회원 게시판 접근 권한</h3>
+<p>
+  <strong>목록 보기 권한</strong>: 
+  <%= Level.of_level(@board.minlevel_index)&.name || "비회원" %> [<%= @board.minlevel_index %>]
+</p>
+<p>
+  <strong>본문 읽기 권한</strong>: 
+  <%= Level.of_level(@board.minlevel_show)&.name || "비회원" %> [<%= @board.minlevel_show %>]
+</p>
+<p>
+  <strong>게시글 쓰기 권한</strong>: 
+  <%= Level.of_level(@board.minlevel_create)&.name || "비회원" %> [<%= @board.minlevel_create %>]
+</p>
+<p>
+  <strong>다운로드 권한</strong>: 
+  <%= Level.of_level(@board.minlevel_download)&.name || "비회원" %> [<%= @board.minlevel_download %>]  
+</p>
+
+<%= link_to 'Edit', edit_admin_board_path(@board) %> |
+<%= link_to 'Back', admin_boards_path %>
+
+<br>
+<br>
+<br>

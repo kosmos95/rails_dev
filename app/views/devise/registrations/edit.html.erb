@@ -1,0 +1,50 @@
+<div class="devise">
+
+	<div class="login">
+	
+		<h2>사용자 정보 변경 <!--<%= resource_name.to_s.humanize %>--></h2>
+
+		<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+		  <%= f.error_notification %>
+
+		  <div class="form-inputs">
+			<%#= f.input :email, required: true, autofocus: true %>
+
+			<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+			  <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+			<% end %>
+
+			<%= f.input :password,
+						hint: "변경을 원하지 않으면 빈칸으로 놔두세요.",
+						required: false,
+						input_html: { autocomplete: "new-password" } %>
+			<%= f.input :password_confirmation,
+						required: false,
+						input_html: { autocomplete: "new-password" } %>
+			<%= f.input :current_password,
+						hint: "다시 한번 입력해주세요.",
+						required: true,
+						input_html: { autocomplete: "current-password" } %>
+		  </div>
+
+		  <div class="form-actions">
+			<%= f.button :submit, "저장하기", class:"btn btn-primary" %>
+		  </div>
+		<% end %>
+
+		<br>
+		
+		<h3>탈퇴</h3>
+
+		<p>탈퇴하겠습니까? 
+		<br>
+		<br>
+		<%= link_to "탈퇴신청", registration_path(resource_name), data: { confirm: "탈퇴된 계정은 같은 이메일로 재가입할 수 없습니다. 정말로 탈퇴하겠습니까?" }, method: :delete, class:'btn btn-default  ' %></p>
+
+		<br>
+		
+		<%= link_to "뒤로", :back, class: "btn btn-link " %>
+
+	</div>
+
+</div>

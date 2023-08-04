@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>id:</strong>
+  <%= @user.id %>
+</p>
+
+<p>
+  <strong>user group:</strong>
+  <%= @user.user_group&.name %>
+</p>
+
+<p>
+  <strong>email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>level:</strong>
+  <%= @user.level %>
+</p>
+
+<p>
+  <strong>roles:</strong>
+  <%= @user.roles.map { |x| x.name }.join(", ") %>
+</p>
+
+<%= link_to 'Edit', edit_admin_user_path(@user) %> |
+<%= link_to 'Back', admin_users_path %>
+

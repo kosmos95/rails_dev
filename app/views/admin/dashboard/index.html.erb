@@ -1,0 +1,14 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <h1>한류모아 대쉬보드 <small> </small></h1>
+  </section>
+<% end %>
+
+<section class="content invoice">
+  <h2>한류모아</h2>
+  <p>
+	<img src="/common/admin/dashboard/slogan2.jpg">
+  </p>
+  <h5><strong>사용자 권한:</strong></h5>
+  <%= raw nl2br(pp_roles_of(current_user)) %>
+</section>

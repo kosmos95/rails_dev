@@ -1,0 +1,15 @@
+<% if @comment.errors.size == 0 %>  
+  <% if @favor_cnt == 0 %>
+    var comment_id = <%= @comment.id %>;
+    var favor_count = $(".comments_list li[data-id='"+comment_id+"'] .favor span");
+    favor_count.html('<%= @comment.favor_cnt %>');
+    empty_selection();
+    notify('추천하였습니다.');
+  <% else %>
+    notify('이미 추천하였습니다.');
+  <% end %>
+
+<% else %>
+  notify("추천하실 수 없습니다.");
+  
+<% end %>

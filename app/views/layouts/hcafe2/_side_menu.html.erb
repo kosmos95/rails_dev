@@ -1,0 +1,30 @@
+<!-- menu -->
+<div class="submenu" id="v_menu">			
+  <div class="header">
+    <span class="fa fa-bars"></span>
+    <span>게시판</span>
+  </div>
+  <ul class="menu1">
+  <% if @yamlmenu %>
+    <% for menu1 in @yamlmenu; menu1_bid = url2bid(menu1["url"]) %>
+      <li class="menu1li">
+        <div class="<%= menu1["sublinks"].nil? ? "": "on" %>">
+          <%= link_to(menu1["title"]&.strip, menu1["url"]&.strip, title:menu1["title"]&.strip) %>
+          <% unless menu1_bid.nil? %><%= raw cached_board_new_post_count_code(menu1_bid) %><% end %>
+        </div>
+        <% unless menu1["sublinks"].nil? %>
+        <ul class="menu2 on">
+          <% for menu2 in menu1["sublinks"]; menu2_bid = url2bid(menu2["url"]) %>
+          <li class="menu2li">
+            <%= link_to(menu2["title"]&.strip, menu2["url"]&.strip, title:menu2["title"]&.strip) %>
+            <% unless menu2_bid.nil? %><%= raw cached_board_new_post_count(menu2_bid) > 0 ? "<span class='new'></span>": "" %><% end %>
+          </li>
+          <% end %>
+        </ul>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
+</div>
+<!-- //menu -->

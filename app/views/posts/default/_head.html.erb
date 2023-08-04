@@ -1,0 +1,11 @@
+<div class="posts">
+  <div class="board_head">
+    <div class="board_name">
+      <h2><i class="fa fa-list-alt" aria-hidden="true"></i>
+        <% if @board_group %>
+        [최신글] <%= link_to @board_group.name, board_group_posts_path(@board_group.bgid) %></h2>
+        <% elsif @board %>
+        <%= link_to @board.name, board_posts_path(@board.bid) %></h2>
+        <% end %>
+    </div>
+  </div>

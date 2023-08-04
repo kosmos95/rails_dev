@@ -1,0 +1,30 @@
+<!-- login start -->
+<% if !user_signed_in? %>
+  <div class="loginbox mb10">
+    <div class="headline">
+      <h3>로그인</h3>
+    </div>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email,
+            required: false,
+            autofocus: true,
+            input_html: { autocomplete: "email" }, label:'이메일' %>
+      <%= f.input :password,
+            required: false,
+            input_html: { autocomplete: "current-password" }, label: '비밀번호' %>
+      <%= f.input :remember_me, as: :boolean, label:'로그인 상태 유지' if devise_mapping.rememberable? %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "로그인", class:'btn btn-primary btn-sm' %>
+    </div>
+    <ul class="text pull-right">
+      <li><a href="<%= new_user_registration_path %>" title="회원가입">회원가입</a></li>
+      <li>|</li>
+      <li><a href="<%= new_user_password_path %>" title="회원정보찾기">회원정보찾기</a></li>
+    </ul>
+    <% end %>
+  </div>
+<% else %>
+  <%= link_to '로그아웃', :destroy_user_session, method: :delete %> | 회원정보찾기 
+<% end %>

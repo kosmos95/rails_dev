@@ -1,0 +1,52 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <h1>Listing <small>high_scores</small></h1>
+
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">high_scores</li>
+    </ol>    
+  </section>
+<% end %>
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-primary">
+        <div class="box-header">
+          <div class="box-tools pull-right">
+            <%= link_to new_high_score_path(@high_score), :class => 'btn btn-success' do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              New High score
+            <% end %>          
+          </div>
+        </div>
+        <div class="box-body table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+              <th>Game</th>
+              <th>Score</th>
+              <th>User</th>
+                            <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= content_tag_for(:tr, @high_scores) do |high_score| %>
+              <td><%= high_score.game %></td>
+              <td><%= high_score.score %></td>
+              <td><%= high_score.user %></td>
+                            <td><%= link_to 'Show', high_score %></td>
+                <td><%= link_to 'Edit', edit_high_score_path(high_score) %></td>
+                <td><%= link_to 'Destroy', high_score, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

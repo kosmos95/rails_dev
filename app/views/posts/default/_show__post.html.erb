@@ -1,0 +1,58 @@
+<% post_content = post.content; %>
+<div class="viewbox ">
+  <table class="postinfo ">
+    <colgroup> 
+      <col width="100"> 
+      <col> 
+    </colgroup>
+    <tbody>
+      <tr>
+      <td scope="col" class="subject"><%= post.subject %></td>
+      </tr>
+      <tr>
+      <td colspan='2' class='info'>
+      
+      <%= render partial:"common/display_avatar", locals: { userdata: post.user.data } %>
+
+      <span class="author"><div class="level_icon lv<%=post.user&.level%>"></div><span class="name"><%= post.nick %></span></span>
+      <span class="bar">|</span>
+      <span class="ip">IP <%= cached_current_user&.admin? ? post.ip : ipstr(post.ip) %></span>
+      <span class="bar">|</span>
+      <span class="hit">조회 <%= post.hit %></span>
+      <span class="bar">|</span>
+      <span class="date"><%= timestr(post.created_at) %></span>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="content">
+  <% if post_content %>
+    <%# , virtual_path: post_content.cache_key, expires_in: 1.hour  %>
+    <%# cache post_content do %>
+    <%= render partial: "posts/#{@skin}/show__post_content", locals: { content: post_content } %>
+    <%# end %>
+  <% end %>
+  </div>
+
+  <div class="recommend">
+    <div class="favor" data-bid="<%= @bid %>" data-post_id="<%= post.id %>" data-uri="<%= favor_board_post_path(@bid, post.id) %>">
+      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+      <span class="favor_count"><%= post.favor_cnt %></span>
+    </div>
+  </div>
+  
+  <% source = post.source&.strip; if (!source.nil? && source != "") %>
+  <div class="source">
+    <div class="sign_text" >* 출처: <%= auto_link(source, :html => { :target => "_blank" }) do |s| truncate(s, :length => 50, ) end %></div>
+  </div>
+  <% end %>
+  
+  <% note = post.user&.data&.note&.strip; if (!note.nil? && note != "") %>
+  <div class="signature">
+    <div class="sign_title">작성자 서명</div>
+    <div class="sign_text <%= note.length >= 20 ? "long":""%>"><%= nl2br(note) %></div>
+    <div class='sign_more'>▼</div>
+  </div>
+  <% end %>
+</div>

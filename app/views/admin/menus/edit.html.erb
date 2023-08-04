@@ -1,0 +1,14 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><%= link_to "Menus", [:admin, @menu]  %></li>
+      <li class="active">Edit</li>
+    </ol>
+    <h1>
+      Editing <small><%= link_to :menu, admin_menus_path() %></small>
+    </h1>
+  </section>
+<% end %>
+
+<%= render 'form' %>

@@ -1,0 +1,9 @@
+<div class="avatar">
+  <div class="avatar_image_wrap">
+    <% if userdata&.avatar&.url %>
+    <%= image_tag(userdata.avatar.thumb.url, class:"avatar_thumb_image") %>
+    <% else %>
+    <%= image_tag(UserDatum.avatar_default_url, class:"avatar_thumb_image") %>
+    <% end %>
+  </div>
+</div>

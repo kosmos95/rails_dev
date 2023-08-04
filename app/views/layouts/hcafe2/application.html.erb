@@ -1,0 +1,244 @@
+<%
+  @yamlmenu = Menu.get_menu("main")
+  @topmenu = Menu.get_menu("main_top")
+  title = @title ? "#{@title} | 한스타일 (hanstyle)" : "한스타일 (hanstyle)" 
+  ogtitle = @title || "한스타일 (hanstyle) - 한류 커뮤니티"
+  @keywords ||= "한류,커뮤니티,한국,한식,한류스타,동영상,역사,일본불매,hanryu,hallyu,korean wave,community,korean food,hanryu star, hallyu star, kpop, hallyu links"
+  @ogdescription ||= "더 나은 한류, 행복한 한류, 한류 커뮤니티, 해외 한류 팬클럽 링크 (한류링크), 한류 유튜브, 한국 스타일"
+  @ogimage ||= asset_path("layouts/hcafe2/icon/default_ogimage.jpg") 
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<title><%= title %></title>
+<meta name="viewport" content="width=1100, initial-scale=0.6">
+<link rel="icon" type="image/png" sizes="192x192"  href="<%= asset_path("layouts/hcafe2/icon/android-icon-192x192.png") %>">
+<link rel="icon" type="image/png" sizes="32x32" href="<%= asset_path("layouts/hcafe2/icon/favicon-32x32.png") %>">
+<link rel="icon" type="image/png" sizes="96x96" href="<%= asset_path("layouts/hcafe2/icon/favicon-96x96.png") %>">
+<link rel="icon" type="image/png" sizes="16x16" href="<%= asset_path("layouts/hcafe2/icon/favicon-16x16.png") %>">
+<meta name="description" content="<%= @ogdescription %>" />
+<meta name="keywords" content="<%= @keywords %>" />
+<meta property="og:type" content="website">
+<meta property="og:title" content="<%= ogtitle %>" />
+<meta property="og:description" content="<%= @ogdescription %>">
+<meta property="og:image" content="<%= @ogimage %>" />
+<meta name="naver-site-verification" content="d70234cac194ee2847fbccb3b53a09a8acc4b849" />
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+<%= stylesheet_link_tag "hcafe2_base", media: "all" %>
+<%= stylesheet_link_tag "hcafe2", media: "all" %>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/ui-lightness/jquery-ui.css" />
+<%= javascript_include_tag "hcafe2", "data-turbolinks-track": "reload" %>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script>
+var default_locale = '<%= I18n.default_locale %>';
+var current_locale = '<%= I18n.locale %>';
+var is_logged_in = '<%= current_user_id.to_s %>';
+var is_mobile_device = <%= !!mobile_device? %>;
+var is_mobilemode = <%= !!mobilemode? %>;
+var is_darkmode = <%= !!darkmode? %>;
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "한스타일 (Hanstyle)",
+  "url": "https://www.hanstyle.net",
+  "sameAs": [
+    "https://www.hanryumoa.net"
+  ]
+}
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149458728-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-149458728-1');
+
+  //if(location.href.indexOf('://m.') >= 0) {
+    //location.replace(location.href.replace('m.hanryumoa.net', 'www.hanryumoa.net'));
+  //}
+</script>
+</head>
+
+<% roleinfo = session["roleinfo"] || {}; %>
+<body class="<%= darkmode? ? 'dark' : '' %>">
+  <div class="wrap_center">  
+    <!-- header start -->
+    <header class="header">
+      <div class="header-top-menu-wrap container">
+        <div id='snsshare'>
+        </div>
+        <ul class="header-top-menu">
+        <li><i class="fa fa-desktop"></i>
+          <a href="<%= request.original_fullpath + (request.original_fullpath.include?("?") ? "&" : "?") + "darkmode=" + (darkmode? ? "0" : "1") %>">
+            <%= darkmode? ? "밝은화면" : "어두운화면" %>
+          </a>
+        </li>
+        <% if cached_user_signed_in? %>
+          <% if roleinfo.has_key?("is_admin") && roleinfo["is_admin"] %>
+            <li><i class="fa fa-cog"></i><%= link_to("관리자", admin_path, target: :_blank) %></li>
+          <% end %>
+          <% if !roleinfo['is_admin'] && (roleinfo['is_board_moderator'] || roleinfo['has_moderating_boards']) -%>
+            <li><i class="fa fa-cog"></i><%= link_to("게시판관리", admin_path, target: :_blank) %></li>
+          <% end -%>
+          <li><i class="fa fa-user"></i><%= link_to "#{cached_current_user.nick}님 회원정보", profile_info_path %></li>
+          <li><i class="fa fa-sign-out"></i><%= link_to "로그아웃", :destroy_user_session, method: :delete %></li>
+        <% else %>
+          <li><i class="fa fa-sign-in"></i><%= link_to "로그인", :new_user_session %></li>
+          <li><i class="fa fa-user"></i><%= link_to "회원가입", :new_user_registration %></li>
+        <% end %>
+        </ul>        
+      </div>
+
+      <div class="headercontent-wrap container">      
+        <div class="headercontent">
+          <div class="hometitleimage" onclick="gohome()"></div>
+          <div class="row" style="">
+            <div class="hidden-xs hidden-sm" style="display: inline-block;float:right;">
+            </div>
+            <div class="visible-xs visible-sm" style="display: inline-block; float: right; margin: 0px; padding: 0px; border-width: 0px;">
+            </div>
+          </div>
+        </div>  
+      </div>
+    </header>
+  </div> 
+
+  <!-- nav start -->
+  <nav class="navbar navbar-default">
+    <div class="container wrap">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div id="logo" class="navbar-header ">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topmenu-navbar-collapse"  id="btn_side">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="navbar-brand" title="">한스타일</a>
+      </div>
+
+      <!-- menu -->
+      <div class="collapse navbar-collapse pull-left" id="topmenu-navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+        <% if @topmenu %>
+          <% for menu1 in @topmenu %>
+            <li class="dropdown"><%= link_to(menu1["title"], menu1["url"]&.strip, target: menu1["target"], class: menu1["class"]) %>
+            <% unless menu1["sublinks"].nil? %>
+              <ul class="dropdown-menu">
+              <% for menu2 in menu1["sublinks"] %>
+              <li class="dropdown"><%= link_to(menu2["title"], menu2["url"]&.strip, target: menu2["target"], class: menu2["class"]) %></li>
+              <% end %>
+              </ul>
+            <% end %>
+            </li>
+          <% end %>
+        <% end %>
+        </ul>
+      </div>
+      <!-- //menu -->
+      
+      <div class="collapse navbar-collapse pull-right" id="topmenu-navbar-search">
+        <ul>
+          <li>
+            <!--
+            <form class="navbar-form navbar-right" name="header_search" id="header_search" action="#" onSubmit="return headerSearch(this);">
+              <div class="form-group">
+                <input type="text" class="form-control px150" placeholder="Search" name="skeyword" accesskey="s" />
+                <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i></button>
+              </div>
+            </form>
+            -->
+            <script type="text/javascript">
+            //<![CDATA[
+            $(function() {
+              $('#topmenu-navbar-collapse .dropdown').hover(function() {
+                $(this).addClass('open');
+              }, function() {
+                $(this).removeClass('open');
+              });
+            });
+            function headerSearch(f) {
+              var skeyword = f.skeyword.value.replace(/(^\s*)|(\s*$)/g,'');
+              if (skeyword.length < 2) {
+                alert('2글자 이상으로 검색해 주세요');
+                f.skeyword.focus();
+                return false;
+              }
+              return true;
+            }
+            //]]>
+            </script>
+          </li>
+        </ul>
+      </div> <!-- //topmenu-navbar-search -->
+    </div>
+  </nav>
+  <!-- //nav end --> 
+
+  <!-- main start -->
+  <div class="main">
+    <div class="container wrap">
+      <div class="row">
+        
+        <div id="side" class="col-md-2 col-sm-2 col-xs-12">  
+          <div class="sidebar">
+            <!-- 사이드바 -->
+            <% cache 'layouts/hcafe2/side_menu', expires_in: 5.minutes, skip_digest:true do %>
+            <%= render "layouts/hcafe2/side_menu" %>
+            <% end %>
+            <!-- //사이드바 -->
+            <%#= render "layouts/hcafe2/side_banner" %>
+          </div>
+        </div>
+        
+        <div id="content" class="nav_content col-md-10 col-sm-10 col-xs-12 mb20">
+          <div class="content_wrap">
+            <div class="flashmsg <%= flash.empty? ? "msg_none" : "msg_in" %>">
+            <% flash.each do |type, message|; next if type.to_s == "timedout"; %>
+              <%= content_tag :div, class: "flash #{type} alert alert-info alert-dismissable fade in" do -%>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <%= message %>
+              <% end -%>
+            <% end %>
+            </div>
+            <%= yield %>
+          </div>
+        </div>
+        
+      </div> <!-- //row -->
+
+    </div> <!-- //container -->
+
+  </div> <!-- //main -->
+  
+  <footer>
+    <div class="wrap_center">
+      <div class="terms">
+        <li><a class="" href="/userinfo">개인정보 취급 방침</a></li>
+        <li><a class="" href="/rules">이용규칙</a></li>
+        <li><a class="" href="/board/bugreport">버그신고</a></li>
+        <li><a class="" href="/board/gongji">공지</a></li>
+      </div>
+      <div class="copyright">
+          한스타일 - 더 나은 한류, 행복한 한류
+      </div>
+      <% if mobile_device? || request.host =~ /^m./ %>
+      <div class="see_mobile">
+        <a href="<%= request.original_url + (request.original_url.include?("?") ? "&" : "?") + "pcmode=mobile" %>" class="viewmobileversion">모바일로 보기</a>
+      </div>
+      <% end %>
+    </div>
+  </footer>
+  
+  <link rel="stylesheet" type="text/css" href="/theme/hcafe2/js/jquery.oembed.css"></link>
+  <script type="text/javascript" src="/theme/hcafe2/js/jquery.oembed.js"></script>
+  <script type="text/javascript" src="/theme/hcafe2/js/autolink.js"></script>
+  
+</body>
+
+</html>

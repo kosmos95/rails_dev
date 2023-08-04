@@ -1,0 +1,4 @@
+#$/bin/sh 
+date=`date +%Y%m%d`
+tar zcvf hcafe2_${date}.tgz --exclude=hcafe2/public/uploads --exclude=hcafe2/public/log/* hcafe2/*
+

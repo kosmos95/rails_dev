@@ -1,0 +1,70 @@
+<section class="content invoice">
+  <div class="row">
+    <div class="col-md-10">
+      <%= form_for(@menu, :url=>[:admin, @menu], :html => { :role => "form" }) do |f| %>
+        <% if @menu.errors.any? %>
+          <div class="alert alert-danger alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <h4><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h4>
+
+            <ul>
+            <% @menu.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+      <div class="form-group">
+        <%= f.label :site %>
+        <%#= f.text_field :site, :class => "form-control" %>
+        <%= select_tag 'menu[site_id]', 
+			options_for_select(@sites.map{ |s| [s.name, s.id.to_i] }, selected: @menu.site),
+			class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, :class => "form-control" %>
+      </div>
+	  <div class="row">
+		<div class="col-md-6">
+		  <div class="form-group">
+			<%= f.label :content %>
+			<%= f.text_area :content, :class => "form-control", :rows=>20 %>
+		  </div>
+		</div>
+		<div class="col-md-6">
+		  <div class="form-group">
+					<p>* 앞에 메뉴 항목 앞의 스페이스(" ")가 중요합니다. tab이나 필요없는 스페이스 지양합니다. </p>
+					<pre>
+- title: 게시판
+  url: /board/1
+  target: _blank
+- title: 공지사항
+  url: /board/2
+- title: About
+  url: /about 
+- title: Store
+  url: /about
+  target: _blank 
+- title: Support
+  url: /support.html
+  sublinks:
+    - title: FAQ
+      url: /faq.html
+    - title: Documentation
+      url: /documentation.html
+    - title: separator
+    - title: Customer Support
+      url: /customer-support.html
+					</pre>
+		  </div>
+		</div>
+	  </div>
+      <div class="form-group">
+        <%= f.submit :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</section> 

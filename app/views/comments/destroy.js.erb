@@ -1,0 +1,14 @@
+<% if @soft_deleted %>
+  var cmt_id = '<%=@comment.id %>';
+  Comment.check_as_softdeleted(cmt_id);
+  Comment.cmt_count -= 1;
+  
+<% else %>
+  $("#comment_<%=@comment.id %>").slideUp('fast');
+  <% unless @force %>
+  Comment.cmt_count -= 1;
+  <% end %>
+<% end %>
+
+Comment.update_cmt_count();
+

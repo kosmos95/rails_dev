@@ -1,0 +1,53 @@
+<div class="comments" data-post_id="<%= @post.id %>" data-current_user_id="<%= current_user_id %>">
+  <div class="comment_header">
+    <div>댓글 <span class="cmt_count" data-cmt_count="<%= @post.comment_cnt %>"><%= @post.comment_cnt %></span></div>
+  </div>
+  <div class="comments_list">
+    <%= render "comments/list" %>
+  </div>
+  <div class="check_new_result"></div>
+  <div class='check_new'><a href="javascript:void(0)">
+    <i class="fa fa-reply-all reply" aria-hidden="true"></i>
+    <i class="fa fa-spinner fa-spin spinner" aria-hidden="true"></i> 새 댓글 확인</a></div>  
+  <% if cached_current_user %>
+  <div class='comments_form'>
+    <%= render "comments/form", comment: @post.comments.new %>
+  </div>
+  <% else %>
+  <div class='comments_form'>
+    댓글 작성은 회원만 가능합니다. &nbsp;&nbsp; 
+    <%= link_to "로그인", :new_user_session, class:'btn btn-default btn-sm' %> 
+    <%= link_to "회원가입", :new_user_registration, class:'btn btn-link btn-sm' %>
+  </div>
+  <% end %>
+</div>
+
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">신고하기</h4>
+      </div>
+      <div class="modal-body">
+        <label for="reason">신고 이유를 적어주세요</label>
+        <input id="reason" type="text" class="form-control" placeholder="" aria-describedby="basic-addon2" name="reason">
+      </div>
+      <div class="modal-footer">
+        <input type='hidden' id="post_id" id="post_id"  value=""/>
+        <input type='hidden' id="comment_id" id="comment_id" value=""/>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+        <button type="button" id="submit" class="btn btn-primary">신고하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$("document").ready(function() {
+//$("document").on("turbolinks:load", function() { // <<---- 동작 않음. (20200216) 
+  if( $(".comments").data("post_id") ) { // if comment exist? 
+    Comment.init(); 
+  }
+});
+</script>

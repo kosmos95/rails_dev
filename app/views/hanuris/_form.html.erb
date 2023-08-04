@@ -1,0 +1,102 @@
+<section class="content invoice">
+  <div class="row">
+    <div class="col-md-10">
+    
+      <%= form_for(@hanuri, :html => { :role => "form" }) do |f| %>
+        <% if @hanuri.errors.any? %>
+          <div class="alert alert-danger alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <h4><%= pluralize(@hanuri.errors.count, "error") %> prohibited this hanuri from being saved:</h4>
+            <ul>
+            <% @hanuri.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+      <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">
+        <%= f.label :제목 %>
+        </label>
+        <div class="col-sm-9">
+        <%= f.text_field :title, :class => "form-control" %> 
+        <%= f.check_box :hidden, class: "" %>비공개 
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">
+        <%= f.label :국가 %>
+        </label>
+        <div class="col-sm-9">
+        <% _selected_country = @hanuri.country || @country || "KR" %>
+        <%= country_select("hanuri", "country", { selected: _selected_country, include_blank: "국가를 선택하세요." }, { class: "form-control" }) %>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">
+        <%= f.label :링크1 %>
+        </label>
+        <div class="col-sm-9">
+        <%= f.text_field :url1, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">
+          <%= f.label :링크2 %>
+        </label>
+        <div class="col-sm-9">
+        <%= f.text_field :url2, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">
+          <%= f.label :링크3 %>
+        </label>
+        <div class="col-sm-9">
+          <%= f.text_field :url3, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label class="col-sm-2 control-label">
+          이미지
+        </label>
+        <div class="col-sm-9">
+          <%= f.file_field :image, label: false, multiple: false %><br>
+          <% if @hanuri.image.url %>
+          <div class='thumb'>
+            <div class='imgwrap'>
+            <%= image_tag(@hanuri.image.url, class:'thumb_image') %>
+            </div>
+            <p><label><%= f.check_box :remove_image %> 삭제</label></p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">
+        <%= f.label :설명 %>
+        </label>
+        <div class="col-sm-9">
+        <%= f.text_area :description, :class => "form-control", rows: 10 %>
+        </div>
+      </div>
+      <div class="form-group clearfix">
+        <label class="col-sm-2 control-label">
+          <%= f.label "정보가 업데이트 되는 주소" %>
+        </label>
+        <div class="col-sm-9">
+          <%= f.text_field :url_info, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">
+        </label>
+        <div class="col-sm-9">
+        <%= f.submit :class => "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</section> 

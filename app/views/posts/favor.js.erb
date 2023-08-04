@@ -1,0 +1,14 @@
+<% if @post.errors.size == 0 %>  
+  <% if @favor_added > 0 %>
+    var favor_count = $(".favor_count");
+    favor_count.html('<%= @post.favor_cnt %>');
+    empty_selection();
+    notify('추천하였습니다.');
+  <% else %>
+    notify('이미 추천하였습니다.');
+  <% end %>
+
+<% else %>
+  notify("추천하실 수 없습니다.");
+  
+<% end %>

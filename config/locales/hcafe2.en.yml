@@ -1,0 +1,28 @@
+en:
+  hcafe2:
+    general: 
+      please_login: 'Please login first.'
+    comment: 
+      no_content: 'No contents.'
+    post:
+      new_post: 'New post'
+      new_post_created: 'New post is created.'
+      post_modified: 'The post is modified.'
+      post_deleted: 'The post is deleted.'
+      no_such_post: 'No such post.'
+      no_such_board: 'No such board.'
+      no_such_boardgroup: 'No such board group'
+      edit: 'Edit'
+      max_post_creation_limit_msg: "You can create %{count} post(s) in %{min} minute(s) in maximum."
+      perm_index: 'Index'
+      perm_show: 'Reading'
+      perm_create: 'Post createion/edit'
+      perm_download: 'Post download'
+      no_permission: 'No such permission.'
+      no_permission2: 'No such permission: %{perm}'
+      encourage_login_msg: 'You can read more posts after registering and login. Thanks.'
+      notice_to_be_redirected_to_login: "You might be redirected to login screen: (after reading %{count} posts)"
+      captcha_check_failed: "failed to check real human."
+    profile: 
+      modified: 'Profile modified'
+      

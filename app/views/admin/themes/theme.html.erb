@@ -1,0 +1,69 @@
+<%# groups = @site.get_field_groups %>
+<% groups = [] %>
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4><span class="fa fa-cog"></span> Theme </h4>
+    </div>
+    <%= form_for @theme, as: "theme", url: {action: :theme_saved}, html: {id: "site_settings_form", class: "panel-body cama_ajax_request validate"} do |f| %>
+    
+    <div class="tabs">
+    
+      <ul role="tablist" class="nav nav-tabs">
+        <li class="<%= "active" if ["", nil].include?(params[:tab]) %>">
+          <a data-toggle="tab" role="tab" href="#tab-information" aria-expanded="false">default</a>
+        </li>
+        <li class="<%= "active" if "config" == params[:tab] %>">
+          <a data-toggle="tab" role="tab" href="#tab-configuration" aria-expanded="false"><%= t('camaleon_cms.admin.post_type.configuration') %></a>
+        </li>
+        <% if groups.present? %>
+          <li class="<%= "active" if "other_config" == params[:tab] %>">
+            <a data-toggle="tab" role="tab" href="#tab-other-configuration" aria-expanded="false"><%= t('camaleon_cms.admin.post_type.other_configuration') %></a>
+          </li>
+        <% end %>
+      </ul>
+      
+      <div class="panel-body tab-content row">
+      
+        <div id="tab-information" class="tab-pane <%= "active" if ["", nil].include?(params[:tab]) %> ">          
+          <div class="form-group">
+            <%= f.label t('camaleon_cms.admin.button.domain', default: 'Domain') %><br>
+            <small><%= t('camaleon_cms.admin.sites.message.enter_key_domain', default: 'Enter your domain here') %></small>
+            <br>
+            <%= f.text_field :slug, :class => "form-control required" %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label t('camaleon_cms.admin.table.name', default: "Name") %><br>
+            <%= f.text_field :name, :class => "form-control translatable" %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label t('camaleon_cms.admin.table.description', default: 'Description') %><br>
+            <%= f.text_area :description, :class => "form-control translatable" %>
+          </div>
+        </div>
+        
+        <%= render "configuration_settings", f: f %>
+        
+      </div>
+      
+      <div class="panel-footer">
+        <button class="btn btn-primary pull-right" type="submit"><%= t('camaleon_cms.admin.button.submit') %></button>
+      </div>
+      
+    </div>
+        
+    <% end %>
+  </div>
+</div>
+<script>
+    jQuery(function () {
+        var panel = $("#site_settings_form");
+        panel.validate();
+        panel.find('.unput_upload, .input_upload').input_upload();
+
+    });
+</script>

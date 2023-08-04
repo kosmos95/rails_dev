@@ -1,0 +1,89 @@
+
+<%= form_for(@board, :url=>[:admin, @board], :html => { :role => "form" }) do |f| %>
+
+  <% if @board.errors.any? %>
+  <div class="alert alert-danger alert-dismissable" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+    <h4><%= pluralize(@board.errors.count, "error") %> prohibited this board from being saved:</h4>
+
+    <ul>
+    <% @board.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-inputs">
+
+    <div class="form-group">
+      <%= f.label "게시판 그룹" %><br>
+      <%= f.collection_select :board_group_id, BoardGroup.all, :id, :name_with_id, {}, {class: "form-control"}  %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "게시판 아이디(bid)" %>
+      <%= f.text_field :bid, :class => "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "게시판 이름" %>
+      <%= f.text_field :name, :class => "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "카테고리" %>
+      <%= f.text_field :category, :class => "form-control" %>
+    </div>
+	
+    <div class="form-group">
+      <%= f.label "게시판 관리자" %>
+      <%= f.text_area :board_managers, class: "form-control", rows: 3  %>
+      <br>
+      * 한줄에 한 명씩 이메일 주소를 적어주세요. 
+    </div>
+
+    <div class="form-group">
+      <%= f.label "순서" %>
+      <br>
+      <%= f.text_field :arrange, :class => "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "목록에 보임" %>
+      <br>
+      <%= f.check_box :display %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label "숨김" %>
+      <br>
+      <%= f.check_box :hidden %>
+    </div>
+
+    <hr>
+
+    <h4>일반 회원 게시판 접근 권한 </h4>
+    <br>
+
+    <div class="form-group">
+      <%= f.label :minlevel_index, "목록 보기 권한" %>
+      <%= f.select :minlevel_index, options_for_select( @level_opions, @board.minlevel_index ), {}, {class: "form-control"} %>
+      <br>
+      <%= f.label :minlevel_show, "본문 읽기 권한" %>
+      <%= f.select :minlevel_show, options_for_select( @level_opions, @board.minlevel_show ), {}, {class: "form-control"} %>
+      <br>
+      <%= f.label :minlevel_create, "게시글 쓰기 권한" %>
+      <%= f.select :minlevel_create, options_for_select( @level_opions, @board.minlevel_create ), {}, {class: "form-control"} %>
+      <br>
+      <%= f.label :minlevel_download, "다운로드 권한" %>
+      <%= f.select :minlevel_download, options_for_select( @level_opions, @board.minlevel_download ), {}, {class: "form-control"} %>
+    </div>
+    
+    <div class="form-group">
+    <%= f.submit :class => "btn btn-primary" %>
+    </div>
+    
+  </div>
+
+<% end %>

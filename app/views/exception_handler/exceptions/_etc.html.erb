@@ -1,0 +1,12 @@
+<%= content_tag :h1, class: "exception", data: { status: @exception.status, response: @exception.response.to_s.humanize, rails: Rails.version } do 
+%>
+  <%= content_tag :div, "#{@exception.status.to_s} #{@exception.description.html_safe}" %>
+<% end %>
+
+<%= raw (if @exception.status.to_s.first == "5" && Rails.application.routes.recognize_path("/") 
+	"<a href='#{root_url}'>Go Back</a>"
+  end)
+%>
+
+<hr>
+<address>한류모아</address>

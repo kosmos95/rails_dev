@@ -1,0 +1,25 @@
+<% comment_id_str = "#{comment.post.id}_#{parent_id}" %>
+<div id="comment_form_<%=comment_id_str%>">
+  <%= simple_form_for([comment.post, comment], remote: true, html: { id: "new_comment_#{parent_id}", :multipart => true, "data-type": "html" }) do |f| %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: "authenticity_token_#{comment_id_str}" %>
+    <%= f.input :user_id, :as => :hidden, :input_html => { :value => comment.user_id, id: "comment_user_id_#{parent_id}" } %>
+    <%= f.input :nick, :as => :hidden, :input_html => { :value => cached_current_user&.nick, id: "comment_nick_#{parent_id}" } %>
+    <%= f.input :name, :as => :hidden, :input_html => { :value => cached_current_user&.name, id: "comment_name_#{parent_id}" } %>
+    <%= f.input :reply, :as => :hidden, :input_html => { :value => "Y", id: "comment_reply_#{parent_id}" } %>
+    <%= f.input :parent_id, :as => :hidden, :input_html => { :value => parent_id, id: "comment_parent_id_#{parent_id}" } %>
+    <%= f.input :parent_depth, :as => :hidden, :input_html => { :value => parent_depth, id: "comment_parent_depth_#{parent_id}" } %>
+    <div class="form-inputs">
+      <%= f.input :content, label: false, placeholder: "댓글을 입력하세요.", input_html: { rows: 3, maxlength: 250, id:"comment_content_#{parent_id}" } %>
+      <div class="image_attach"><span>이미지</span>
+        <%= f.file_field :image, style:"display: inline", id: "comment_image_#{comment_id_str}" %>
+        <%= f.input_field :img_pos, as: :radio_buttons, collection: [["0", "글위"], ["1", "글아래"]], label_method: :second, value_method: :first, boolean_style: :inline, id: "comment_img_pos_#{comment_id_str}" %>
+        <span class="remove_image" style="display:<%= comment.image ? "": "none"%>;"><label><%= f.check_box :remove_image, id: "comment_remove_image_#{comment_id_str}" %>이미지 삭제</label></span>
+      </div>
+    </div>
+    <div class="form-actions">
+      <div class="counter"><span class="count">0</span> / 250자</div>
+      <%= f.button :submit, value: "입력", class:"btn btn-primary btn-sm", "data-disable-with": "입력중..." %> 
+      <%= button_tag "취소", type:"button", class:"btn btn-sm cancel", data: {  } %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,11 @@
+<% bid = @bid || post.bid; %>
+<% has_image_icon = (!post.files_cnt.nil? && post.files_cnt > 0) ? '<span class="has_image"><i class="fa fa-picture-o" aria-hidden="true"></i></span>': "" %>
+<% cmtcnt = post.comment_cnt > 0 ? "<span class='cmtcnt'>[#{post.comment_cnt}]</span>": "" %>
+<% newicon = post.is_new ? "<span class='new'>new</span>": ""; %>
+<tr>
+  <td class="num">공지</td>
+  <td class="sbj"><%= raw "&nbsp;" * post.depth.to_i * 5 %><a href="<%= board_post_path(bid, post.id, {page:@page}) %>"><%= post.subject %></a><%= raw has_image_icon %><%= raw cmtcnt %><%= raw newicon %></td>
+  <td class="name"><div class="level_icon lv<%=user&.level%>"></div><%= post.nick %></td>
+  <td class="hit"><%= post.hit %></td>
+  <td class="date"><%= timestr(post.created_at, 4) %></td>
+</tr>

@@ -1,0 +1,28 @@
+<%
+
+@translator = I18n.backend
+@translator.load_translations
+
+translations = {}
+I18n.available_locales.each do |lang|
+    translations[lang] = @translator.send(:translations)[lang.to_sym]
+end
+
+@translations = translations
+
+%>
+window.I18n = <%= @translations.to_json.html_safe %>
+
+window.I18n.t = function(key) {
+    if(window.I18n[current_locale]){
+        el = eval("I18n['"+current_locale+"']." + key);
+    }
+    if(window.I18n[default_locale] && typeof(el) == 'undefined'){
+        el = eval("I18n['"+default_locale+"']." + key);
+    }
+    if(typeof(el) == 'undefined'){
+        el = key;
+    }
+    return el;
+};
+

@@ -1,0 +1,289 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <h1>Listing <small>users</small></h1>
+
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">users</li>
+    </ol> 
+  </section>
+<% end %>
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+    
+      <div class="box ">
+        <div class="box-header">
+          <div class="box-tools pull-right">
+            <%= link_to new_admin_user_path(@user), :class => "btn btn-success" do %>
+              <span class="glyphicon glyphicon-plus"></span>
+              회원 추가
+            <% end %>
+          </div>
+          
+          <div class="searchform">
+            <form name="search" action="<%= admin_users_path %>">
+
+              <div class='searchform_row'>
+              
+                <%= select_tag(:where, 
+                  options_for_select([['이름', 'name'],['별명', 'nick'],['이메일', 'email'], ['레벨', 'level']], 
+                  @where)) %>
+                
+                <input type="text" name="keyword" size="30" value="<%= params[:keyword]%>" class="input">
+                <input type="submit" value="검색" class="btn btn-primary btn-sm">
+                &nbsp;&nbsp;
+                <span>
+                <%= check_box_tag(:with_deleted, 1, @with_deleted) %>
+                <%= label_tag(:with_deleted, "삭제계정포함") %>				
+                </span>
+              
+              </div>
+              
+              <div class='userform_row'>
+                <%= label_tag(:sort, "정렬항목") %>
+                <%= select_tag(:sort, 
+                  options_for_select([['순번', 'id'],['이름', 'name'],['가입일', 'created_at']], 
+                  @sort)) 
+                %>
+                <%= label_tag(:orderby, "정렬") %>
+                <%= select_tag(:orderby, 
+                  options_for_select([['역순', 'asc'],['정순', 'desc']], 
+                  @orderby))
+                %>
+                <%= label_tag(:recnum, "항목수") %>
+                <%= select_tag(:recnum, 
+                  options_for_select([15, 20, 30, 50, 100, 200, 500, 1000].map {|x| ["#{x}개", x]}, 
+                  @recnum)) 
+                %>
+              </div>
+              
+            </form>
+          </div>
+          
+        </div>
+      </div>
+	  
+      <div class="head ">
+        <div class="">
+          <div class="post_count">전체글 <%= @total_count %> ( 페이지 <%= @page %> / <%= @total_page_num %> )</div>
+        </div>
+      </div>
+
+      <%= form_tag admin_users_proc_path, :name => 'list' %>
+
+      <%= hidden_field_tag(:act, "") %>
+
+      <div class="box box-primary">
+        <div class="box-body table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th><%= check_box_tag('selectall', '', false, :id => 'selectall') %></th>
+                <th>Id</th>
+                <th>상태</th>
+                <th>이름</th>
+                <th>별명</th>
+                <th>이메일</th>
+				<th>사용자그룹</th>
+                <th>권한</th>
+                <th>레벨</th>
+                <th>포인트</th>
+                <th>로그인 횟수</th>
+                <th>마지막 로그인</th>
+                <th>등록일</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+              <tr>
+                <td><%= check_box_tag('selected_users[]', user.id, false, :class => 'selected_users', :id => "selected_userss_#{user.id}") %></td>
+                <td><%= user.id %></td>
+                <td><%= (user.confirmed? && !user.stopped && !user.deleted_at) ? "O" : 
+                    (!user.confirmed? ? "인증대기" : 
+                      (user.stopped ? "정지" : 
+						(user.deleted_at ? "탈퇴" : "???"))) %></td>
+                <td><%= user.name %></td>
+                <td><%= user.nick %></td>
+                <td><%= link_to user.email, admin_user_path(user), target: "" %></td>
+				<td><%= user.user_group&.name %></td>
+                <td><%= user.role_names_humanized.join(", ") %></td> <!-- #user.roles.pluck(:name).join(",") -->
+                <td><%= user.level %><%= user.exclude_autoupgrade ? "(제외)" : "" %></td>
+                <td><%= user.data.point %></td>
+                <td><%= user.sign_in_count %></td>
+                <td><%= !user.last_sign_in_at.nil? ? user.last_sign_in_at.strftime("%F") : "--" %></td>
+                <td><%= user.created_at.strftime "%F" %></td>
+                <td><%= link_to "편집", edit_admin_user_path(user) %></td>
+                <!--<td><%#= link_to "삭제", admin_user_path(user), method: :delete, data: { confirm: "삭제하겠습니까?" } %></td>-->
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+		
+		<div class="box-footer">
+        
+          <div class="btnbox1">
+          </div>
+          
+          <div class="btnbox2">
+            <span class="btn btn-link"><a href="<%= admin_users_path %>">처음목록</a></span>          
+          </div>
+          
+          <div class="pagebox">
+            <div class="digg_pagination" style=''>
+              <%= will_paginate @posts, { previous_label: "이전", next_label: "다음", inner_window: 4, outer_window: 4, show_right_side: true, total_pages: @total_count / @recnum }; %>
+            </div>
+          </div>
+          
+          <div class="actionbox1">
+            <input type="button" value="선택항목반전" class="btn btn-link btn-sm" id="selectall_inverse">
+            <input type="button" value="인증" class="btn btn-link btn-sm" onclick="act_selection('multi_set_confirmed');">
+			<input type="button" value="인증해제" class="btn btn-link btn-sm" onclick="act_selection('multi_set_unconfirmed');">
+			<input type="button" value="정지" class="btn btn-link btn-sm" onclick="act_selection('multi_set_stopped');">
+            <input type="button" value="정지해제" class="btn btn-link btn-sm" onclick="act_selection('multi_unset_stopped');">
+            <input type="button" value="자동레벨업 제외" class="btn btn-link btn-sm" onclick="act_selection('multi_exclude_autoupgrade');">            
+            <input type="button" value="자동레벨업 재개" class="btn btn-link btn-sm" onclick="act_selection('multi_exclude_autoupgrade_redo');">            
+            <input type="button" value="탈퇴(재가입X)" class="btn btn-link btn-sm" onclick="act_selection('multi_delete');">
+<% if current_user.has_role?(:superadmin) %>
+			<input type="button" value="탈퇴해제" class="btn btn-link btn-sm" onclick="act_selection('multi_delete_undo');">
+<% end %>			
+            <input type="button" value="데이타 삭제(재가입O)" class="btn btn-link btn-sm" onclick="act_selection('multi_delete_hard');">            
+			<br>
+			<br>
+			<div class="desc">※ [데이타 삭제(재가입O)]은 같은 계정으로 가입한 회원이 이전 회원과 오해될 수 있으므로 되도록 사용하지 말기를 바랍니다. </div>
+          </div>
+          
+          <br>
+          <br>
+        </div>
+		
+      </div>
+      </form>
+		
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+
+$('#selectall').click(function() {
+  var checked = $(this).prop('checked');
+  var next_state = checked ? 'checked' : '';
+  $('input.selected_users').prop('checked', next_state);
+});
+
+$('#selectall_inverse').click(function() {
+  $('input.selected_users').each(function(idx, item) {
+    var i = $(item);
+    var next_state = ! i.prop('checked');
+    i.prop('checked', next_state);
+  });
+});
+
+function act_selection(act)
+{
+	var f = document.list;
+	var l = document.getElementsByName('selected_users[]');
+	var n = l.length;
+	var j = 0;
+	var i;
+
+	for(i = 0; i < n; i++) {
+		if(l[i].checked == true) j++;
+	}
+
+	if (j == 0)
+	{
+		alert('선택된 게시물이 없습니다.      ');
+		return false;
+	}
+	
+	if (act == 'multi_delete')
+	{
+		if(confirm('정말로 탈퇴처리하시겠습니까? '))
+		{
+			f.act.value = act;
+			f.submit();
+		}
+	}
+<% if current_user.has_role?(:superadmin) %>
+	else if (act == 'multi_delete_undo')
+	{
+		if(confirm('탈퇴해제하시겠습니까?'))
+		{
+			f.act.value = act;
+			f.submit();
+		}
+	}
+<% end %>	
+	else if (act == 'multi_delete_hard')
+	{
+		if(confirm('정말로 탈퇴처리하시겠습니까? 복구가 불가능합니다!'))
+		{
+			f.act.value = act;
+			f.submit();
+		}
+	}
+	else if (act == 'multi_set_stopped')
+	{
+		if(confirm('정말로 정지처리하시겠습니까?  '))
+		{
+			f.act.value = act;
+			f.submit();
+		}
+	}
+	else if (act == 'multi_unset_stopped')
+	{
+		if(confirm('정말로 정지해제 하겠습니까? '))
+		{
+			f.act.value = act;
+			f.submit();
+		}
+	}
+	else if (act == 'multi_exclude_autoupgrade')
+	{
+		if(confirm('자동레벨업 해제하겠습니까? '))
+		{
+			f.act.value = act;
+			f.submit();
+		}
+	}
+	else if (act == 'multi_exclude_autoupgrade_redo')
+	{
+		if(confirm('자동레벨업 재개 하겠습니까? '))
+		{
+			f.act.value = act;
+			f.submit();
+		}
+	}
+	else if (act == 'multi_set_confirmed')
+	{
+		if(confirm('인증처리 하겠습니까? '))
+		{
+			f.act.value = act;
+			f.submit();
+		}
+	}
+	else if (act == 'multi_set_unconfirmed')
+	{
+		if(confirm('인증해제처리 하겠습니까? '))
+		{
+			f.act.value = act;
+			f.submit();
+		}
+	}
+	else {
+		alert('알 수 없는 명령입니다.')
+	}
+  
+	return false;
+}
+
+</script>
+
+

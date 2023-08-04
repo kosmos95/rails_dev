@@ -1,0 +1,38 @@
+<div class="key_index">
+  <% _langchars = lang_start_chars("KO") %>
+  <% _lang = "KO" %>
+  <div class="key_box">
+    <%= link_to "전체", hanuris_path(lang: _lang, :starts_with => ""), class: "all" %>
+    <% _langchars.each do |c| %>
+    <%= link_to c.to_s, hanuris_path(lang: _lang, starts_with: c), class: (@lang == _lang && @starts_with == c ? "selected": "") %>
+    <% end %>
+  </div>
+
+  <% _langchars = lang_start_chars("EN") %>
+  <% _lang = "EN" %>
+  <div class="key_box">
+    <%= link_to "All", hanuris_path(lang: _lang, :starts_with => ""), class: "all" %>
+    <% _langchars.each do |c| %>
+    <%= link_to c.to_s, hanuris_path(lang: _lang, starts_with: c) %>
+    <% end %>
+  </div>
+</div>
+
+<div class='country_flag_box row'>
+  <% if @starts_with != "" || @country != "" %>
+    <% @countries_idx.each do |c| c_code = c[0]; c_name = c[1]; %>
+    <div class='country_item ellip1 col-xs-6 col-md-3'>
+      <a href="<%= hanuris_path(lang: @lang, country: c_code) %>">
+        <% if @flag_countries.include?(c_code.downcase) %>
+        <span class='flag'><%= image_tag("/common/flags/icon/#{c_code.downcase}.png") %></span>
+        <% else %>
+        <span class='flag'></span>
+        <% end %>
+        <span class='country_name'><%= c_name %></span>
+      </a>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+
+

@@ -1,0 +1,270 @@
+.hanuris {
+  
+  .btn00 {
+    display: inline-block;
+    border-top: #DFDFDF solid 1px;
+    border-left: #DFDFDF solid 1px;
+    border-right: #DFDFDF solid 1px;
+    border-bottom: #C0C0C0 solid 1px;
+    a {
+      display: inline-block;
+      border-top: #FFFFFF solid 1px;
+      background: #EFEFEF;
+      padding: 6px 10px 6px 10px;
+      color: #444;
+      font-family: dotum;
+      font-size: 13px;
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    &.primary a {
+      background: #ffffcc; 
+    }
+  }
+
+  .board_head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0px 0;
+    //border-bottom: 1px solid #E2E2E2;
+  }
+
+  .board_name {
+    display: inline-block;
+    //align-items: center;
+    padding: 0px 0 10px;
+    h2 {
+      font-size: 18px;
+      letter-spacing: -0.5px;
+    }  
+  }
+  
+  h2 { font-size: 20px; }
+  
+}
+
+
+.hanuri_list {
+  //border-bottom: #dfdfdf solid 1px;
+  ul {
+   list-style:none; padding:0; margin: 0;
+     
+    .item {
+      min-height: 130px;
+      padding: 20px 0 5px;
+      border-bottom: 1px dotted #ccc;
+      position: relative;
+      
+      .no {
+        float: left;
+        width: 30px;
+        padding-top: 5px;
+        color: #999;
+      }
+
+      .thumb {
+        float: left;
+        margin: 0 18px 0 5px;
+        border: 1px solid #eee;
+
+        .imgwrap {
+          width: 100px; 
+          max-height: 80px; 
+          overflow: hidden;
+        }
+        img { width: 100%; }
+      }
+
+      .subject {
+        font-size: 16px;
+        font-weight: bold;
+
+        .no {
+          padding: 0;
+          margin: 0;
+          padding-right: 2px;
+          font-size: 13px;
+          color: #777;
+        }
+      
+        a {
+          color: #444;
+        }
+        
+        .urlshort { font-weight: normal; font-size: 14px; }
+
+        .title2 {
+          font-size: 16px;
+          color: #444;
+          font-weight: bold;
+        }
+
+        .info {
+          font-size: 11px;
+          xpadding: 5px 0 5px;
+        }
+
+        .desc {
+          font-family: gulim, gothic;
+          font-size: 12px;
+          color: #666;
+          padding: 5px 0 5px;
+        }
+
+        .imgpos {
+          margin-bottom: -1px;
+        }
+
+        .cat {
+          font-size: 12px;
+          font-family: gothic,gulim;
+          color: #888;
+          letter-spacing: -1px;
+        }
+
+        .comment {
+          font: normal 11px arial;
+          color: #FC6138;
+        }
+
+        .new {
+          font-family: arial;
+          font-size: 10px;
+          color: #ff0000;
+        }
+      }
+    }
+  }
+  .bottom { padding:25px 0 0 0; }
+  .btnbox1 {float:left; min-width:130px;}
+  .btnbox2 {float:right; min-width:130px; text-align:right;}
+}
+
+.lang_key_links {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  //border-bottom: 1px solid #c9c9c9;  
+}
+
+.key_index {
+  border-top: 1px solid #c9c9c9;
+  border-bottom: 1px solid #c9c9c9;
+}
+
+.key_box { 
+  padding: 8px 10px;
+  span { padding-right: 10px; }
+  .under_box { margin-left: 40px; }
+  a {
+     width:27px; height: 26px; text-align: center; -webkit-transition: all 0.3s ease; /* Safari and Chrome */
+     line-height: 26px; display: inline-block; color: #555; 
+    -moz-transition: all 0.3s ease; /* Firefox */
+    -ms-transition: all 0.3s ease; /* IE 9 */
+    -o-transition: all 0.3s ease; /* Opera */
+    transition: all 0.3s ease;  background: url(../img/background/key_over.png) no-repeat 50% 34px;   
+    &.selected { font-weight: bold; }
+  }  
+  a:hover, &.on { color: #222; } 
+  .key_all { width:48px; margin-right: 10px; }
+  .key_all:hover, &.on {  
+    color: #222; 
+  }
+  .m_key_sel { 
+    display: none; border: 1px solid #ccc; height: 32px; width: 99.8%; 
+  }
+}
+
+.country_flag_box {
+  padding: 10px 20px 0px; 
+  .country_item { 
+    height: 20px; 
+    margin-bottom: 15px;
+  }
+  .flag {
+    display: inline-block;
+    border: solid 1px #eee; 
+    min-width: 30px; 
+    min-height: 16px;
+    margin-right: 5px; 
+  }
+}
+
+.hanuri_show {
+  margin: 0px auto;
+  padding: 0 0 20px 0;
+  
+  p {
+    padding:0;
+    margin:0; 
+    word-break: break-all;
+  }
+  
+  .thumb {
+    //float:left; 
+    //width: 300px; 
+    min-height: 100px; 
+    max-height: 300px; 
+    //margin-right: 20px; 
+    overflow: hidden;
+    .imgwrap {
+      //width: 300px;
+      img { width: 100%; }
+    }
+  }
+  
+  .link a { color: #44f; }
+  
+  .title {
+    margin: 0 0 10px; 
+  }
+  
+  .info {
+    margin: 0 0 10px; 
+  }
+  
+  .desc {
+    margin: 0 0 10px; 
+  }  
+
+}
+
+.edit_hanuri {
+  .thumb {
+    .imgwrap {
+      width: 300px;
+      height: 200px;
+      overflow: hidden; 
+      img {
+        width: 100%;         
+      }
+    }
+  }
+}
+
+.hanuris {
+  padding-top: 10px; 
+  .board_head {
+    padding: 0 10px 0;
+  }
+}
+
+.mobile {
+  .hanuri_list { 
+    margin: 0 10px 0;
+  }
+  .hanuri_show {
+    padding-bottom: 0;
+    .hanuri_detail {
+      margin: 20px 20px 20px;
+    }
+    .box-tools  {
+      margin: 20px 20px 20px;
+    }
+  }
+  .key_index {
+    .all { font-size: 14px; }
+  }
+}
+

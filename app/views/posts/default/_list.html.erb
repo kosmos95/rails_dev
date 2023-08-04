@@ -1,0 +1,144 @@
+<% 
+  total_pages = @total_count / @recnum + 1;
+  next_page = @page < total_pages ? @page + 1 : nil 
+%>
+
+<div class="postlist <%= "listmode_#{mode}" %>">  
+  <div class="head ">
+    <!-- summary -->
+    <div class="summary">
+    <% if params[:where].present? %>
+      <div class="post_count">검색결과: <%= @total_count %> 항목 검색됨 (키워드: <%= @keyword %>)</div>
+    <% else %>
+      <div class="post_count">전체글 <%= @total_count %></div>
+    <% end %>
+    </div>
+    
+    <!-- category -->
+    <% if !@category_arr.nil? && @category_arr.length > 1 %>
+    <div class="category"><ul>
+    <% post_url_opts = @page > 1 ? {page:@page} : {} %>
+    <% category_arr = [""] + @category_arr %>
+    <% category_arr.each do |cat| %>
+      <li class='<%= ((@category.nil? && cat.empty?) || @category == cat) ? "on" : ""%>'>
+        <% post_url_opts[:cat] = cat if (!cat.nil? && cat != '') %>
+        <a href="<%= board_posts_path(@bid, post_url_opts) %>"><%= cat != '' ? cat : '전체' %></a>
+      </li>
+    <% end %>
+    </ul></div>
+    <% end %>
+  </div>
+  
+  <table>
+    <colgroup>
+      <col width="">
+      <col> 
+      <col width=""> 
+      <col width=""> 
+      <col width=""> 
+    </colgroup>  
+    <thead>
+      <tr>
+        <th class='num' scope="col">#</th>
+        <th class='sbj' scope="col">제목</th>
+        <th class='name' scope="col">이름</th>
+        <th class='hit' scope="col">조회수</th>
+        <th class='date' scope="col">날짜</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+    
+    <% posts_notice_model = @post_indices_notice || @posts_notice %>  
+    <% rec = 0 %>
+    <% is_group = (@bid.nil?) ? "gr" : "bo" %>
+    <% if !posts_notice_model.nil? %>
+        <% if @page == 1 %>
+          <% posts_notice_model.each do |model| 
+               post = get_post_for_listing(model); user = model.user; %>
+            <% selected = (@post&.id == post.id) ? "selected" : "" %>
+			      <% vkey = "#{post.cache_key}##{post.updated_at.to_i}/list__post_notice/#{is_group}/#{selected}/"; %>
+            <% cache_if (selected!=""), post, virtual_path: vkey, expires_in: 5.minutes do %>
+            <%= render partial: "posts/#{@skin}/list__post_notice", locals: { post: post, user: user, rec: rec } %>
+            <% end; rec += 1 %>
+          <% end %>
+        <% end %>
+    <% end %>
+    
+    <% posts_model = @post_indices || @posts %>
+    <% if @keyword != nil then %>
+      <% posts_model.each do |model| 
+          post = get_post_for_listing(model); user = model.user;
+          next if post.nil? || post.hidden == 1 || post.id == nil %>
+        <% selected = (@post&.id == post.id) ? "sel" : ""; %>
+        <% vkey = "#{post.cache_key}##{post.updated_at.to_i}/list__post/#{is_group}/#{selected}/#{@keyword}"; %>
+        <% cache_if (selected!=""), post, virtual_path: vkey, expires_in: 5.minutes do %>
+          <%= render partial: "posts/#{@skin}/list__post", locals: { post: post, rec: rec, user: user, keyword: @keyword } %>
+        <% end; %>
+        <% rec += 1 %>
+      <% end %>      
+    <% else %>
+      <% posts_model.each do |model| 
+          post = get_post_for_listing(model); user = model.user;
+          next if post.nil? || post.hidden == 1 || post.id == nil %>
+        <% selected = (@post&.id == post.id) ? "sel" : ""; %>
+        <% vkey = "#{post.cache_key}##{post.updated_at.to_i}/list__post/#{is_group}/#{selected}/#{@keyword}"; %>
+        <% cache_if (selected!=""), post, virtual_path: vkey, expires_in: 5.minutes do %>
+          <%= render partial: "posts/#{@skin}/list__post", locals: { post: post, rec: rec, user: user, keyword: @keyword } %>
+        <% end; %>
+        <% rec += 1 %>
+      <% end %>
+    <% end %>
+
+    </tbody>
+  </table>
+
+  <div class="bottom ">
+    <div class="btnbox1 form-actions">
+      <% if !@keyword.nil? %>
+      <a class="btn btn-link btn-sm" href="<%= board_posts_path(@bid, {page:@page}) %>">목록</a></span>
+      <% end %>
+      <% if !@bid.nil? %>
+      <a class="btn btn-primary btn-sm" href="<%= new_board_post_path(@bid) %>" data-turbolinks="false">글쓰기</a>
+      <% end %>
+    </div>
+    
+    <div class="btnbox2">
+      <% if next_page %>
+        <% params_hash = {page: next_page}; params_hash2 = { sort: @sort, order: @order, where: @where }
+           params_hash.merge(params_hash2) if params[:where].present? %>
+          <span class="btn btn-default btn-sm"><a href="<%= !@bid.nil? ? 
+                board_posts_path(@bid, params_hash) : 
+                board_group_posts_path(@bgid, params_hash) %>">다음 페이지</a></span>
+      <% elsif @page > 1 %>
+         <span class="btn btn-default btn-sm">끝!</span>
+      <% end %>
+    </div>
+    
+    <div class="hcafe2_pagination">
+      <% if !@bid.nil? %>
+      <%= will_paginate posts_model, { params: { controller: "posts", action: "index", bid: @bid, id: nil }, previous_label: "◀이전", next_label: "다음▶", inner_window: 4, outer_window: 0, page_set: 10, show_right_side: false, total_pages: total_pages }; %>
+      <% else %>
+      <%= will_paginate posts_model, { params: { controller: "posts", action: "group_index", bgid: @bgid, id: nil }, previous_label: "◀이전", next_label: "다음▶", inner_window: 4, outer_window: 0, page_set: 10, show_right_side: false, total_pages: total_pages }; %>
+      <% end %>
+    </div>
+  </div>
+  
+  <% if !@bid.nil? %>
+  <div class="searchform">
+    <form name="search" action="<%= board_posts_path(@bid) %>">
+      <input type="hidden" name="sort" value="<%= @sort %>">
+      <input type="hidden" name="order" value="<%= @order %>">
+      <select name="where">
+      <option value="subject" <%= @where == "subject" ? "selected": "" %>>제목</option>
+      <option value="content" <%= @where == "content" ? "selected": "" %>>본문</option>
+      <option value="subject|content" <%= @where == "subject|content" ? "selected": "" %>>제목+본문</option>
+      <option value="nick" <%= @where == "nick" ? "selected": "" %>>닉네임</option>
+      </select>      
+      <input type="text" name="keyword" size="30" value="<%= @keyword %>" class="input">
+      <input type="submit" value="검색" class="btn btn-sm">
+    </form>
+  </div>
+  <% end %>
+  
+</div>

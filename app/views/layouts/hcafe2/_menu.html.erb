@@ -1,0 +1,13 @@
+<ul class="nav navbar-nav navbar-right">
+<% for menu1 in yamlmenu %>
+  <li class="dropdown"><%= link_to(menu1['title'], menu1['url']) %>
+  <% unless menu1['sublinks'].nil? %>
+    <ul class="dropdown-menu">
+    <% for menu2 in menu1['sublinks'] %>
+    <li class="dropdown"><%= link_to(menu2['title'], menu2['url']) %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  </li>
+<% end %>
+</ul>

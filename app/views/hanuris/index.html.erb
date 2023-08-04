@@ -1,0 +1,88 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <ol class="breadcrumb">
+      <li><a href="/">홈</a></li>
+      <li class="active">한류링크</li>
+    </ol>
+  </section>
+<% end %>
+
+<div class='hanuris'>
+  <div class="board_head">
+    <div class="board_name">
+      <h2><i class="fa fa-list-alt" aria-hidden="true"></i>
+        <a href="/hanuris">한류링크</a></h2>
+    </div>
+  </div>
+
+  <%= content_for :content_header  %>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+      
+        <h2>나라별</h2>
+        
+        <div class="lang_key_links">
+        <%= render "country_index_links", lang: @lang %>
+        </div>
+        
+        <div class="box box-primary">
+          <div class="box-body">
+            <div class="hanuri_list">
+              <div class='head_info'>
+                전체 개수: <%= @total_count %>
+              </div>
+              <ul>
+                <%= content_tag_for(:div, @hanuris, class: "item") do |hanuri| %>
+                  <div class="thumb">
+                    <div class='imgwrap'>
+                    <% if hanuri.image&.thumb200&.url %>
+                    <%= link_to(image_tag(hanuri.image&.thumb200&.url, class:""), hanuri) %>
+                    <% else %>
+                    <%= link_to image_tag("/common/flags/#{hanuri.country.downcase}.png"), hanuri %>
+                    <% end %>
+                    </div>
+                  </div>
+                  <div class='subject'>
+                    <a href="<%= hanuri_path(hanuri) %>" target="">
+                      <%= hanuri.title %> <span class="urlshort">(<%= hanuri.url1[0..30] %>...)</span> <% if hanuri.hidden%><i class='fa fa-eye-slash'></i><% end %>
+                    </a>
+                  </div>
+                  <div class='info'>
+                    <div class='country'>국가: <%= country_name(hanuri.country) %></div>
+                    <div class='date'>등록일: <%= timestr(hanuri.created_at, 3) %></div>
+                    <div class='nick'>등록자: <%= hanuri.user.nick %></div>
+                  </div>
+                <% end %>
+                <% if @hanuris.length == 0 %>
+                  <div class='item'>
+                    <div class='subject'>자료가 없습니다.</div>
+                  </div>
+                <% end %>
+              </ul>
+
+              <div class="bottom ">
+                <div class="btnbox1 form-actions">
+                  <% if !@keyword.nil? %>
+                  <a class="btn btn-link btn-sm" href="<%= hanuris_path({page:@page}) %>">목록</a></span>
+                  <% end %>
+                  <%# if current_user&.admin? %>
+                  <a class="btn btn-primary btn-sm" href="<%= new_hanuri_path country:@country %>" data-turbolinks="false">새 한류링크</a>
+                  <%# end %>
+                </div>
+                <div class="hcafe2_pagination">
+                  <%= will_paginate @hanuris, { params: { controller: "hanuris", action: "index" }, previous_label: "◀이전", next_label: "다음▶", inner_window: 4, outer_window: 0, page_set: 10, show_right_side: false }; %>
+                </div>
+              </div>
+            
+            </div>
+
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+</div>

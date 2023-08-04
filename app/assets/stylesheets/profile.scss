@@ -1,0 +1,51 @@
+.profile {
+
+	h2 {
+		font-size: 24px;
+		font-weight: bold;
+		margin: 20px 0 20px;
+		color: #516B82;
+	}
+	
+	.info {
+    
+    .avatar_wrap {
+      
+      position: absolute;
+      margin-top: 55px;
+      left: 400px; 
+      min-width: 300px;
+      
+      .title { 
+        font-size: 15px; 
+        font-weight: bold; 
+        margin-bottom: 15px; 
+      }
+
+      .avatar_image_wrap {
+        width: 100px;
+        height: 100px;                
+        border: solid 1px #ddd; 
+        text-align:right; 
+        overflow: hidden;
+      }
+    }
+	}
+}
+
+
+.mobile {
+  .profile {
+
+    padding: 10px;
+    
+    .avatar_wrap {
+      position: absolute;
+      margin-top: 50px;
+      left: 200px;
+      min-width: 100px;
+    }
+    
+  }
+}
+

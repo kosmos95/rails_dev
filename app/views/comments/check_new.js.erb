@@ -1,0 +1,50 @@
+<% if @comments.size > 0 %>
+  <% @comments.each do |comment| %>
+    (function() {
+      var id = '<%= comment.id %>';
+      var gid = '<%= comment.gid %>';
+      var parent_id = '<%= comment.parent_id %>';
+      var post_id = '<%= @post_id %>';
+      var html = '<%=j render comment %>';
+      
+      if( id == gid ) {
+        var cmtlist = $("#comments_list_" + post_id);
+        $(html).appendTo(cmtlist).hide().fadeIn('fast');
+        $("#comments_form_" + post_id + " form")[0].reset();
+      
+      } else {
+        var parent = $("#comment_" + parent_id);
+        if(parent_id != '' && parent_id != gid) {
+          var childof = $(".childof_" + parent_id);
+          var parent = $("#comment_" + parent_id);
+          if(childof.length > 0)
+            childof.last().after(html); 
+          else 
+            parent.after(html);
+
+        } else {
+          $(".comment_group_" + gid).last().after(html);
+        }
+
+        // reply form reset 
+        parent.find(".comment_form_reply form")[0].reset();
+        parent.find(".comment_form_reply").hide();
+        parent.find(".comment_item_action").css('display', 'block');      
+      }
+    
+      Comment.new_item_blink(id);
+      
+	  })();
+  <% end %>
+  
+  // update total comment count 
+  Comment.cmt_count += <%= @comments.size %>;
+  Comment.update_cmt_count();
+
+  // reset reply event 
+  Comment.set_reply_form_event();  
+  
+<% else %>
+  Comment.check_new_notify("새 댓글이 없습니다.");
+  
+<% end %>

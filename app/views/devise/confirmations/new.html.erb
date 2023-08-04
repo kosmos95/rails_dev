@@ -1,0 +1,27 @@
+<div class="devise">
+
+	<div class="confirm">
+
+		<h2>이메일 인증 메일 보내기</h2>
+
+		<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+		  <%= f.error_notification %>
+		  <%= f.full_error :confirmation_token %>
+
+		  <div class="form-inputs">
+			<%= f.input :email,
+						required: true,
+						autofocus: true,
+						value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+						input_html: { autocomplete: "email" } %>
+		  </div>
+
+		  <div class="form-actions">
+			<%= f.button :submit, "보내기", class: "btn btn-primary" %>
+		  </div>
+		<% end %>
+
+		<%= render "devise/shared/links" %>
+
+	</div>
+</div>

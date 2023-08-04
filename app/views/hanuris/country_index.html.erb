@@ -1,0 +1,62 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <ol class="breadcrumb">
+      <li><a href="/">홈</a></li>
+      <li class="active">한류링크</li>
+    </ol>
+  </section>
+<% end %>
+
+<div class='hanuris'>
+  <div class="board_head">
+    <div class="board_name">
+      <h2><i class="fa fa-list-alt" aria-hidden="true"></i>
+        <a href="/hanuris">한류링크</a></h2>
+    </div>
+  </div>
+</div>
+
+<%#= content_for :content_header  %>
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+    
+      <h2>나라별</h2>
+      <div class="lang_key_links">
+      <%#= render "country_index_links", lang: @lang %>
+      </div>
+      
+      <div class="box box-primary">
+        <div class="box-body">
+          <div class="hanuri_list">
+            <div class='head_info'>
+            </div>
+              <% @countries_by_region.each do |region, country_keys| %>
+              <div class='col-xs-3'>
+                <h2><%= region %></h2>
+                <ul>
+                  <% country_keys.each do |country_key| country = ISO3166::Country[country_key]; %>
+                  <div class=''>
+                    <div class='imgwrap'>
+                      <% if @flag_countries.include?(country_key.downcase) %>
+                      <%= link_to image_tag("/common/flags/icon/#{country_key.downcase}.png"), hanuris_country_index_path(country_key) %> 
+                      <% end %>
+                    </div>
+                    <div class='title'>
+                      <%= link_to country.translations["ko"], hanuris_country_index_path(country_key) %>
+                    </div>
+                  </div>
+                  <% end %>
+                </ul>
+              </div>
+              <% end %>
+          </div>
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+

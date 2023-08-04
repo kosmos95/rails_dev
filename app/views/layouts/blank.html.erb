@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= @title ||= "한류모아" %></title>
+</head>
+
+<body>
+	
+	<div id="content" class="">
+
+		<%= flash_messages(:close, :fade) %>
+
+		<% flash.each do |type, message|; next if type.to_s == "timedout"; %>
+		<%= "#{type} #{message}" %>
+		<% end %>
+		
+		<%= yield %>
+
+	</div> 
+				
+</body>
+
+</html>

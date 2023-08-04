@@ -1,0 +1,27 @@
+ko:
+  hcafe2:
+    general: 
+      please_login: '먼저 로그인을 해주세요'
+    comment: 
+      no_content: '내용이 없습니다.'
+    post:
+      new_post: '새 글'
+      new_post_created: '게시물이 등록되었습니다.'
+      post_modified: '게시물이 수정되었습니다.'
+      post_deleted: '게시물이 삭제되었습니다.'
+      no_such_post: '없는 게시물입니다.'
+      no_such_board: '없는 게시판입니다.'
+      no_such_boardgroup: '없는 게시판 그룹입니다.'
+      edit: '편집'
+      max_post_creation_limit_msg: '최대 %{min}분에 %{count}개 게시물을 생성할수 있습니다.'
+      perm_index: '목록 보기'
+      perm_show: '게시글 읽기'
+      perm_create: '게시글 작성/편집'
+      perm_download: '다운로드'
+      no_permission: '권한이 없습니다.'
+      no_permission2: '권한이 없습니다: %{perm}'
+      encourage_login_msg: '회원가입 및 로그인을 하면 더 많은 글을 읽으실 수 있습니다. 감사합니다.'
+      notice_to_be_redirected_to_login: "앞으로 게시글 조회시 로그인 화면으로 이동될 수 있습니다. (%{count}개 글을 읽은 후)"
+      captcha_check_failed: "진짜 사람인지 인증에 실패했습니다."
+    profile: 
+      modified: '회원정보가 수정되었습니다.'

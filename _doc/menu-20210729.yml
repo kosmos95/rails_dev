@@ -1,0 +1,191 @@
+- title: 유머와 공감
+  url: /group/humor
+  sublinks:
+    - title: 자유게시판/시사
+      url: /board/free
+    - title: 재밌는 사진방
+      url: /board/jaemiphoto
+    - title: 재밌는 영상방
+      url: /board/jaemivideo
+#    - title: 비밀의 화원
+#      url: /board/bimilbang
+    - title: 코로나19 관련
+      url: /board/uhan 
+
+- title: 한류 상황판
+  url: /group/hanryu
+  sublinks:
+    - title: 국내뉴스
+      url: /board/news 
+    - title: 세계뉴스/역사전쟁
+      url: /board/world
+    - title: 해외 한류 소식
+      url: /board/hansosik
+    - title: 한류영상방
+      url: /board/hanvideo
+    - title: 한국 음악방
+      url: /board/hanmusic
+    - title: 한국어와 한글방
+      url: /board/hangulstudy
+    - title: 한식/한복/한옥
+      url: /board/hanfood
+    #    - title: 한류 커버댄스방
+    #      url: /board/hancoverdance
+    - title: 한국 역사방
+      url: /board/hanhistory
+    - title: 세계역사 공부방
+      url: /board/worldhistory
+#    - title: 한국 아트 백서(뷰티&패션)
+#      url: /board/hanfashion
+#    - title: 한국 여행/맛집/축제
+#      url: /board/hantravel
+#    - title: 한국 누리별방(SNS,Youtube)
+#      url: /board/hannuri
+
+- title: 정보와 소통
+  url: /group/info
+  sublinks:
+    - title: 한일역사경제문제
+      url: /board/korjap
+    - title: 한중역사경제문제
+      url: /board/korchn
+    - title: 해외/일본반응
+      url: /board/forresp
+    - title: 생생외국 경험방
+      url: /board/overseas_exp
+    - title: 생생한국 경험방
+      url: /board/korean_exp
+    - title: 해외반응번역
+      url: /board/overseas_trans
+#    - title: 한국반응번역
+#      url: /board/korean_trans
+    - title: 번역요청 게시판
+      url: /board/request_trans
+    - title: 홍보게시판 소개
+      url: /board/sitead
+
+- title: 취미공유방
+  url: /group/hobby
+  sublinks:
+    - title: IT/과학/경제
+      url: /board/itscieco
+    - title: 국방/군사/무기
+      url: /board/weapon
+    - title: 재난대비
+      url: /board/xevent
+    - title: 방송/연예
+      url: /board/broadcast
+    - title: 사회/문화
+      url: /board/socicult
+#    - title: 정치
+#      url: /board/politics
+    - title: 영화/드라마/애니
+      url: /board/modrani
+    - title: 미스터리
+      url: /board/mystery
+#    - title: 음식
+#      url: /board/food1
+#    - title: 연극/뮤지컬
+#      url: /board/plmusical
+#    - title: 도서
+#      url: /board/books
+#    - title: 클래식/공연
+#      url: /board/classic
+#    - title: 미술/전시회
+#      url: /board/artexibi
+#    - title: 웹툰
+#      url: /board/webtoon1
+#    - title: 온라인 게임
+#      url: /board/onlinegame
+#    - title: 스포츠
+#      url: /board/sports
+#    - title: 자동차
+#      url: /board/car
+
+- title: 한류스타게시판
+  url: /group/fanclub
+  sublinks:
+    - title: 걸그룹 일반
+      url: /board/kpopgirl
+    - title: 보이그룹 일반
+      url: /board/kpopboy
+#    - title: 신화(SHINHWA)
+#      url: /board/shinhwa
+#    - title: GOD
+#      url: /board/god5
+    - title: 방탄소년단(BTS)
+      url: /board/bts
+#    - title: 엑소(EXO)
+#      url: /board/exo
+#    - title: 비투비(BTOB)
+#      url: /board/btobto1
+#    - title: 몬스타엑스(MonsterX)
+#      url: /board/monsterx
+#    - title: NCT16
+#      url: /board/nct16
+#    - title: 갓세븐(GOT7)
+#      url: /board/got7
+#    - title: 세븐틴(SEVENTEEN)
+#      url: /board/seventeen
+#    - title: 뉴이스트(NUEST)
+#      url: /board/nuest
+#    - title: 빅스(VIXX)
+#      url: /board/vixx
+#    - title: 아스트로(ASTRO)
+#      url: /board/astro
+#    - title: JBJ
+#      url: /board/jbj
+#    - title: 핫샷(Hotshot)
+#      url: /board/hotshot1
+#    - title: 원어스(Oneus)
+#      url: /board/oneus
+#    - title: AB6IX
+#      url: /board/ab6ix
+#    - title: 투모로우바이투게더(TXT)
+#      url: /board/txt
+#    - title: 에이핑크(APINK)
+#      url: /board/apink
+    - title: 레드벨벳(RedVelvet)
+      url: /board/redvelvet
+    - title: 트와이스(Twice)
+      url: /board/twice
+    - title: 여자친구(GFriend)
+      url: /board/gfriend
+    - title: 러블리즈(Lovelyz)
+      url: /board/lovelyz
+    - title: 오마이걸(Ohmygirl)
+      url: /board/ohmygirl
+    - title: 마마무(MAMAMOO)
+      url: /board/mamamoo
+#    - title: 드림캐쳐(Dreamcatcher)
+#      url: /board/dreamcatcher
+#    - title: 모모랜드(Momoland)
+#      url: /board/momoland
+#    - title: 우주소녀(WJSN)
+#      url: /board/wjsn
+#    - title: 구구단(GUGUDAN)
+#      url: /board/gugudan
+#    - title: 잇지(ITZY)
+#      url: /board/itzy
+#    - title: 위키미키(WekiMeki)
+#      url: /board/wekimeki
+    - title: 아이즈원(IZ*ONE)
+      url: /board/izone
+#    - title: 페이버릿(FAVORITE)
+#      url: /board/favorite
+#    - title: (여자)아이들
+#      url: /board/g_idle
+    - title: 트로트한류
+      url: /board/trot
+
+- title: 게시판
+  url: /group/main
+  sublinks:
+    - title: 사이트 공지 
+      url: /board/gongji
+    - title: 오늘의 한마디
+      url: /board/hanmadi
+    - title: 첫화면MV신청 
+      url: /board/frontmv
+#    - title: 출석합시다
+#      url: /board/ccheck

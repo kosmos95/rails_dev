@@ -1,0 +1,37 @@
+<%= render "posts/#{@skin}/head", board: @board %>
+
+<!--
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v5.0&appId=515050272593862&autoLogAppEvents=1"></script>
+-->
+
+<div class="postshow">
+  <%# , virtual_path: "#{@post.cache_key}##{@post.updated_at.to_i}/show", expires_in: 1.hour %>
+  <% cache @post do %>
+    <%= render partial: "posts/#{@skin}/show__post", locals: { post: @post } %>
+  <% end; %>
+  
+  <div class="social">  
+    <!--<div class="fb-like" data-href="<%= board_post_url(@bid, @post.id) %>" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>-->
+  </div>
+
+  <div class="bottom ">
+    <div class="btnbox1 form-actions">
+      <a class="btn btn-primary btn-sm" href="<%= new_board_post_path(@bid) %>" data-turbolinks="false">글쓰기</a> &nbsp;
+      <a class="btn btn-default btn-sm" href="<%= new_board_post_path(@bid, id: @post.id, reply:"y") %>" >답글</a>
+    </div>
+    <div class="btnbox2">
+      <a class="btn btn-link btn-sm" href="<%= board_posts_path(@bid, {page:@page}) %>">목록</a></span>
+      <a class="btn btn-link btn-sm" href="<%= edit_board_post_path(@bid, @post.id, { page: @page }) %>">수정</a></span>
+      <a class="btn btn-link btn-sm" href="javascript:void(0)" data-myacttype='delete' data-msg="삭제하겠습니까?" data-url="<%= destroy_board_post_path(@bid, @post.id, method: :delete) %>">삭제</a></span>
+    </div>
+  </div>
+</div>
+
+<%= render "comments/comments", { post: @post } %>
+
+<%= render (pcmode? ? "posts/#{@skin}/list" : "posts/#{@skin}/list_m"), mode: "show" %>
+
+<%= render "posts/#{@skin}/script" %>
+
+<%= render "posts/#{@skin}/bottom" %>

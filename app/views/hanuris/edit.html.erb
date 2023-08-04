@@ -1,0 +1,22 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+        <li><%= link_to "한류링크", hanuris_path %></li>
+        <li class="active">수정</li>
+      </ol>
+  </section>
+<% end %>
+
+<div class='hanuris'>
+  <div class="board_head">
+    <div class="board_name">
+      <h2><i class="fa fa-list-alt" aria-hidden="true"></i>
+        <a href="/hanuris">한류링크</a></h2>
+    </div>
+  </div>
+</div>
+
+<%= content_for :content_header %>
+
+<%= render 'form' %>

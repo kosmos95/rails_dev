@@ -1,0 +1,36 @@
+.devise {
+
+	width:600px; 
+	//margin:40px auto 30px;
+	margin-top:40px; 
+	margin-bottom: 30px; 
+	margin-left: auto;
+	margin-right: auto; 
+	
+	h2 {
+		font-size: 24px;
+		font-weight: bold;
+		margin: 20px 0 20px;
+		color: #516B82;
+	}
+	
+	h3 {
+		font-size: 20px;
+		font-weight: bold;
+		margin: 20px 0 10px;		
+		color: #516B82;
+	}
+	
+	.login, .register {
+		margin-top: 30px; 
+	}
+	
+}
+
+.mobile {
+	.devise {
+		width:inherit;
+		padding: 20px;
+		margin:0 auto 0; 
+	}
+}

@@ -1,0 +1,101 @@
+<% theme = current_site.theme %>
+<div class="row">
+  <div class="col-md-6 col-xs-6 col-xs-v12">
+    <div id="tabmenu1" class="simpletabs">
+      <ul class="simpletabs-tab">
+        <li><a href="#tabmenu2_content1" onclick="javascript:return false" class="">
+        새 글</a></li>
+        <li><a href="#tabmenu2_content2" onclick="javascript:return false" class="">
+        조회수 많은글</a></li>
+        <li><a href="#tabmenu2_content3" onclick="javascript:return false" class="">
+        3일</a></li>
+        <li><a href="#tabmenu2_content4" onclick="javascript:return false" class="">
+        10일</a></li>
+      </ul>
+      <div id="tabmenu2_content1" class="" style=";">
+        <%= Rails.cache.fetch("frontpage/tab1-1", expires_in: 3.minutes + 30.seconds, race_condition_ttl: 15.seconds) do 
+        recent_posts1_widget title: nil, bid: nil, recnum:10, show_date:false; 
+        end %>
+      </div>
+      <div id="tabmenu2_content2" class="" style=";">
+        <%= Rails.cache.fetch("frontpage/tab1-2", expires_in: 10.minutes + 33.seconds, race_condition_ttl: 30.seconds) do 
+        recent_posts1_widget title: nil, bid: nil, recnum:10, show_date:false, min_favor_cnt: 0, min_hit:3, search_interval: 1.day; 
+        end %>
+      </div>
+      <div id="tabmenu2_content3" class="" style=";">
+        <%= Rails.cache.fetch("frontpage/tab1-3", expires_in: 11.minutes + 35.seconds, race_condition_ttl: 30.seconds) do 
+        recent_posts1_widget title: nil, bid: nil, recnum:10, show_date:false, min_favor_cnt: 0, min_hit:7, search_interval: 3.days; 
+        end %>
+      </div>
+      <div id="tabmenu2_content4" class="" style=";">  
+        <%= Rails.cache.fetch("frontpage/tab1-4", expires_in: 12.minutes + 37.seconds, race_condition_ttl: 30.seconds) do 
+        recent_posts1_widget title: nil, bid: nil, recnum:10, show_date:false, min_favor_cnt: 0, min_hit:20, search_interval: 10.days; 
+        end %>
+      </div>
+    </div>
+      
+    <script type="text/javascript">
+      initTabMenu("tabmenu1");
+    </script>  
+  </div>
+  
+  <div class="col-md-6 col-xs-6 col-xs-v12">
+      <%#= Rails.cache.fetch("frontpage/notice-1", expires_in: 10.minutes + 40.seconds, race_condition_ttl: 15.seconds) do 
+        #recent_posts1_widget klass:"widget_recentposts2", title: "공지", gongji: 'gongji', recnum:10, 
+        #  more_link: board_posts_path("gongji"), show_date:false;
+      #end %>
+    <div class="rightinfo">
+      <%
+        youtube_title = theme.get_option("frontpage_youtube_title") || "지코 (ZICO) - 사람 (Human) Official Music Video"
+        youtube_url = theme.get_option("frontpage_youtube_url")
+        youtube_id = get_youtube_id(youtube_url) || "1QMv1Qx5hRw"
+      %>
+      <iframe width="400" height="300" src="https://www.youtube.com/embed/<%= youtube_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+      <p><%= youtube_title %></p>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-6 col-xs-6 col-xs-v12">
+    <%= Rails.cache.fetch("frontpage/tab2-2", expires_in: 3.minutes + 41.seconds, race_condition_ttl: 15.seconds) do 
+        recent_posts1_widget klass:"widget_recentposts2", title: "재미공간", bgid: "humor", recnum:10,
+          more_link: board_group_posts_path("humor"), show_date:false;
+      end %>
+  </div>
+  <div class="col-md-6 col-xs-6 col-xs-v12">
+    <%= Rails.cache.fetch("frontpage/tab2-1", expires_in: 3.minutes + 40.seconds, race_condition_ttl: 15.seconds) do 
+        recent_posts1_widget klass:"widget_recentposts2", title: "게시판", bgid: "main", recnum:10, 
+          more_link: board_group_posts_path("main"), show_date:false;
+      end %>
+  </div>
+  <div style="clear:both"></div>
+  <div class="col-md-6 col-xs-6 col-xs-v12">
+    <%= Rails.cache.fetch("frontpage/tab2-3", expires_in: 3.minutes + 42.seconds, race_condition_ttl: 15.seconds) do 
+        recent_posts1_widget klass:"widget_recentposts2", title: "한류공간", bgid: "hanryu", recnum:10,
+          more_link: board_group_posts_path("hanryu"), show_date:false;
+      end %>
+  </div>
+  <div class="col-md-6 col-xs-6 col-xs-v12">
+    <%= Rails.cache.fetch("frontpage/tab2-4", expires_in: 3.minutes + 43.seconds, race_condition_ttl: 15.seconds) do  
+        recent_posts1_widget klass:"widget_recentposts2", title: "소통공간", bgid: "info", recnum:10, 
+          more_link: board_group_posts_path("info"), show_date:false; 
+      end %>
+  </div>
+  <div style="clear:both"></div>
+  <div class="col-md-6 col-xs-6 col-xs-v12">
+    <%= Rails.cache.fetch("frontpage/tab2-5", expires_in: 3.minutes + 44.seconds, race_condition_ttl: 15.seconds) do 
+        recent_posts1_widget klass:"widget_recentposts2", title: "취미공유방", bgid: "hobby", recnum:10,
+          more_link: board_group_posts_path("hobby"), show_date:false; 
+      end %>
+  </div>
+  <div class="col-md-6 col-xs-6 col-xs-v12">
+    <%= Rails.cache.fetch("frontpage/tab2-6", expires_in: 3.minutes + 45.seconds, race_condition_ttl: 15.seconds) do 
+        recent_posts1_widget klass:"widget_recentposts2", title: "한류스타게시판", bgid: "fanclub", recnum:10,
+          more_link: board_group_posts_path("fanclub"), show_date:false;
+      end %>
+  </div>
+</div>
+

@@ -1,0 +1,158 @@
+<% 
+    level_model = Level.of_level(@user.level)
+%>
+<div class="profile">
+
+  <h2 class="title">회원 정보</h2>
+
+  <ul class="nav nav-tabs">
+      <li class="active"><a href="#" title="회원정보">기본정보</a></li>
+      <!--
+      <li><a href="" title="나의 작성글">나의 작성글</a></li>
+      <li><a href="" title="나의 스크랩">스크랩</a></li>
+      <li><a href="" title="내가 작성한 댓글">댓글</a></li>
+      -->
+  </ul>
+
+  <div class="info">
+
+    <div class="avatar_wrap">
+      <div class="title">사용자 아바타</div>
+      <%= render partial:"common/display_avatar", locals: { userdata: @user.data } %>
+    </div>
+
+    <div class="form-horizontal">
+      
+      <div class="page-header">
+        <h4>기본정보</h4>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">이메일 주소</label>
+        <div class="col-sm-9">
+          <p class="form-control-static"><%= @user.email %></p>
+        </div>
+      </div>
+      
+      <!--
+      <div class="form-group">
+        <label class="col-sm-2 control-label">이름</label>
+        <div class="col-sm-9">
+          <p class="form-control-static"><%= @user.name %></p>
+        </div>
+      </div>
+      -->
+        
+      <div class="form-group">
+        <label class="col-sm-2 control-label">닉네임</label>
+        <div class="col-sm-9">
+          <p class="form-control-static"><%= @user.nick %></p>
+        </div>
+      </div>
+            
+      <div class="form-group">
+        <label class="col-sm-2 control-label">활동 사항</label>
+        <div class="col-sm-9">
+          <p class="form-control-static">로그인: <%= @user.sign_in_count %>, 게시물: <%= @userdata.total_post_cnt %>, 댓글: <%= @userdata.total_cmt_cnt %></p>          
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">회원 레벨</label>
+        <div class="col-sm-9">
+          <p class="form-control-static"><%= level_model.name %> [<%= @user.level %>]</p>
+          <% if !level_model.autoupgrade_enabled? %>
+              <p><strong>※ 레벨 업 정보</strong>: (현재레벨은 자동 레벨업을 지원하지 않습니다.)</p>
+          <% else %>
+              <p><strong>※ 레벨 업 정보</strong><p>
+              <table class='table table-bordered' id='loginupinfo'>
+              <thead>
+              <th>
+              <td>로그인</td>
+              <td>게시글</td>
+              <td>댓글</td>
+              <td>방문일</td>
+              </th>
+              </thead>
+              <tbody>
+              <tr>
+              <td><%= level_model.name %> 레벨의 자동 레벨업 조건: </td>
+              <td><%= level_model.autoupgrade_login_num %></td>
+              <td><%= level_model.autoupgrade_post_num %></td>
+              <td><%= level_model.autoupgrade_comment_num %></td>
+              <td><%= level_model.autoupgrade_visit_days %></td>
+              </td>              
+              <tr>
+              <td>현재 레벨에서의 카운트: </td>
+              <td><%= @user.data.lvl_login_cnt %></td>
+              <td><%= @user.data.lvl_post_cnt %></td>
+              <td><%= @user.data.lvl_comment_cnt %></td>
+              <td><%= @user.data.lvl_visit_days %></td>
+              </tr>
+              </tbody>
+              </table>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">포인트</label>
+        <div class="col-sm-9">
+          <p class="form-control-static"><%= @userdata.point %></p>
+        </div>
+      </div>
+      
+      <% if @user.roles&.length > 0 %>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">회원 권한</label>
+        <div class="col-sm-9">
+          <p class="form-control-static"><%= @user.role_names_humanized.join(", ") %></p>
+        </div>
+      </div>
+      <% end %>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">가입일</label>
+        <div class="col-sm-9">
+          <p class="form-control-static"><%= (@user.created_at.localtime) %></p>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-sm-2 control-label">최종 접속일</label>
+        <div class="col-sm-9">
+          <p class="form-control-static"><%= (@user.last_sign_in_at.localtime) %></p>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="col-sm-2 control-label">전체메일</label>
+        <div class="col-sm-9">
+          <p class="form-control-static"><%= @userdata.mailing ? "받음" : "안받음" %></p>
+        </div>
+      </div>  
+      
+      <div class="form-group">
+        <label class="col-sm-2 control-label">서명</label>
+        <div class="col-sm-9">
+          <div class="note"><%= simple_format(@userdata.note) %></div>
+        </div>
+      </div>        
+      
+      <div class="form-group">
+        <div class="col-sm-9 col-sm-offset-2 mt20">
+          <a href="<%= profile_info_edit_path %>" class="btn btn-default ">회원정보 변경</a>
+          
+          &nbsp;&nbsp;
+          <a href="<%= edit_user_registration_path %>" class="btn btn-link ">패스워드 변경 / 회원탈퇴</a>
+        </div>
+      </div>
+      
+      <br>
+      <br>
+      
+    </div>
+   
+  </div>
+
+</div>

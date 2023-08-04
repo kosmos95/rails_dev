@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bgid:</strong>
+  <%= @board_group.bgid %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @board_group.name %>
+</p>
+
+<%= link_to 'Edit', edit_admin_board_group_path(@board_group) %> |
+<%= link_to 'Back', admin_board_groups_path %>

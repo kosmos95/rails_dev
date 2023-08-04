@@ -1,0 +1,20 @@
+<div id="comments_form_<%=@post.id %>" class="">
+  <%##### data-type: script로 하면 두번 실행됨 %>
+  <%= simple_form_for(comment, url: post_comments_path(@post.id), remote: true, html: { :multipart => true, "data-type": "html" }) do |f| %>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token, id: "authenticity_token_#{@post.id}" %>
+    <%= f.input :user_id, :as => :hidden, :input_html => { :value => comment.user_id } %>
+    <%= f.input :nick, :as => :hidden, :input_html => { :value => cached_current_user&.nick } %>
+    <%= f.input :name, :as => :hidden, :input_html => { :value => cached_current_user&.name } %>
+    <div class="form-inputs">
+      <%= f.input :content, label: false, placeholder: "댓글을 입력하세요.", input_html: { rows: 4, maxlength: 250 } %>
+      <div class="image_attach"><span>이미지</span>
+        <%= f.file_field :image, style:"display: inline", id: "comment_image_#{@post.id}" %>
+        <%= f.input_field :img_pos, as: :radio_buttons, collection: [["0", "글위"], ["1", "글아래"]], label_method: :second, value_method: :first, boolean_style: :inline, id: "comment_img_pos_#{@post.id}" %>
+      </div>
+    </div>
+    <div class="form-actions">
+      <div class="counter"><span class='count'>0</span> / 250자</div>
+      <%= f.button :submit, value: "입력", class:"btn btn-primary btn-sm", "data-disable-with": "입력중..." %>
+    </div>
+  <% end %>
+</div>

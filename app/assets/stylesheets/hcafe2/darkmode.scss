@@ -1,0 +1,181 @@
+body.dark {
+  background: #000;
+}
+
+// Default 
+.dark {
+  input, button, select, textarea {
+    color: #000; 
+    &.btn { 
+      //color: #fff;
+    }
+    &[type=file] {
+      color: #fff;
+    }
+  }  
+  .btn.btn-default {
+    border-color: #777; 
+    background: transparent; 
+  }
+}
+
+.dark header {
+  .header-top-menu-wrap {
+    background: #333;
+  }
+  .header-top-menu {
+    li a { color: #ccc; }
+  }
+}
+
+.dark footer {
+  a { color: #ccc; }
+  
+  .terms li a {
+    color: #ccc; 
+    border-right: none;
+  }
+  
+  .copyright {
+    color: #f49b1b;
+  }
+  
+  .see_mobile {
+    background: #333; 
+  }
+  
+  border-top: 1px solid #333;
+}
+
+// Menu 
+.dark {
+  .navbar {
+    //linear-gradient(142deg, #3C9CB2, #39A8BF 31%, #408CA1 65%)
+    background: linear-gradient(142deg, #03242b, #0f4550 31%, #0a6077 65%);
+  }
+  
+  .submenu {
+    background: #333; 
+    a { color: #ccc; }
+  }
+  
+  .nav_content {
+    background: transparent; 
+    color: #eee;
+    a { color: #eee; }
+  }
+  
+  .simpletabs {
+    background: #222; 
+    .simpletabs-tab {
+      background: #444;
+      li a {
+        background: #444;
+        &.on {
+          background: #694e33;
+        }
+      }
+    }
+  }
+}
+
+// Widgets 
+.dark {
+  //li a:hover {
+    //color: #aaa; 
+  //}
+  .widget_recentposts1 {
+    span.board_name {
+      background: #174e92;
+      color: #eee;
+    }
+    li a:hover {
+      color: #aaa; 
+    }
+  }
+  
+  .widget_recentposts2 {
+    background: #333; 
+    li .board_name {
+      color: #59e02b;      
+    }
+    li a:hover {
+      color: #aaa; 
+    }
+  }
+}
+
+// Post 
+.dark {
+  .postlist {
+    tr {
+      &:hover {
+        background: #483b32;
+      }
+    }
+    th {
+      background: #333; 
+      color: #eee; 
+    }
+    td {
+      color: #eee;     
+      border-bottom: #444 solid 1px;
+    }
+    .category ul li {
+      background: #444;
+      a {
+        color: #68e2e2;
+      }
+    }
+  }
+  
+  .postshow {
+    table.postinfo {
+      td {
+        color: #fff; 
+      }
+      tr {
+        border-bottom: solid #777;
+      }
+    }
+    .bar {
+      color: #f49b1b;
+    }
+    .content {
+      color: #fff; 
+    }
+    
+    .viewbox .signature {
+      background: #222; 
+      color: #eee;
+    }
+  }
+}
+
+// Comment 
+.dark {
+  .comments {
+    background: #333; 
+    .check_new {
+      background: #208ae6;
+    }
+    .comment_item_header {
+      color: #fff; 
+    }
+    .depth0 {
+      background: transparent;
+    }
+  }
+}
+
+// Pagination
+.dark {
+  .hcafe2_pagination .disabled {
+    border-color: #444;
+  }
+  .hcafe2_pagination a {
+    border-color: #777;
+  }
+}
+
+

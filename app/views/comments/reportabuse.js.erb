@@ -1,0 +1,11 @@
+<% if @report_cnt > 0 %>
+  notify("이미 신고하셨습니다.");
+
+<% elsif @report_added > 0 %>
+  empty_selection();
+  notify('신고하였습니다.');
+
+<% else %>
+  notify("신고하실 수 없습니다. (1)");
+  
+<% end %>

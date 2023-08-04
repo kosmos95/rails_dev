@@ -1,0 +1,148 @@
+<% theme = current_site.theme %>
+<div id="tab1">    
+  <div class="slider">
+    <ul class="slider-tab">
+      <li><a href="#">새 글</a></li>
+      <li><a href="#">조회수 많은글</a></li>
+      <li><a href="#">3일</a></li>
+      <li><a href="#">10일</a></li>
+      <div class="clearfix"></div>
+    </ul>
+    <div class="touchslider">
+      <ul>
+        <li class="slide_content" id='tab1-1' style="">
+          <%= Rails.cache.fetch("frontpage_m/tab1-1", expires_in: 3.minutes + 20.seconds, race_condition_ttl: 15.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, recnum:10 end %>
+        </li>
+        <li class="slide_content" id='tab1-2' style="">
+          <%= Rails.cache.fetch("frontpage_m/tab1-2", expires_in: 10.minutes + 22.seconds, race_condition_ttl: 30.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, recnum:10, min_favor_cnt: 0, min_hit:3, search_interval: 1.day
+          end %>
+        </li>
+        <li class="slide_content" id='tab1-3' style="">
+          <%= Rails.cache.fetch("frontpage_m/tab1-3", expires_in: 10.minutes + 24.seconds, race_condition_ttl: 30.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, recnum:10, min_favor_cnt: 0, min_hit:7, search_interval: 3.days
+          end %>
+        </li>
+        <li class="slide_content" id='tab1-4' style="">
+          <%= Rails.cache.fetch("frontpage_m/tab1-4", expires_in: 10.minutes + 26.seconds, race_condition_ttl: 30.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, recnum:10, min_favor_cnt: 0, min_hit:20, search_interval: 10.days
+          end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="centerinfo">
+  <%
+    youtube_title = theme.get_option("frontpage_youtube_title") || "지코 (ZICO) - 사람 (Human) Official Music Video"
+    youtube_url = theme.get_option("frontpage_youtube_url")
+    youtube_id = get_youtube_id(youtube_url) || "1QMv1Qx5hRw"
+  %>
+  <iframe class='fitvids' width="400" height="230" src="https://www.youtube.com/embed/<%= youtube_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <p><%= youtube_title %></p>
+</div>
+
+<div id="tab2">
+  <div class="slider">
+    <ul class="slider-tab">
+      <li><a href="#">재미공간</a></li>
+      <li><a href="#">한류공간</a></li>
+      <li><a href="#">소통공간</a></li>
+      <li><a href="#">취미공유방</a></li>
+      <li><a href="#">한류스타</a></li>
+      <li><a href="#">게시판</a></li>
+       <div class="clearfix"></div>
+    </ul>
+    <div class="clearfix"></div>
+    <div class="touchslider">
+      <ul>
+        <li class="slide_content" style="">
+          <%= Rails.cache.fetch("frontpage_m/tab2-2", expires_in: 3.minutes + 41.seconds, race_condition_ttl: 15.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, bgid: "humor", recnum:10; end %>
+        </li>
+        <li class="slide_content" style="">
+          <%= Rails.cache.fetch("frontpage_m/tab2-3", expires_in: 3.minutes + 42.seconds, race_condition_ttl: 15.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, bgid: "hanryu",recnum:10; end %>
+        </li>
+        <li class="slide_content" style="">
+          <%= Rails.cache.fetch("frontpage_m/tab2-4", expires_in: 3.minutes + 43.seconds, race_condition_ttl: 15.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, bgid: "info", recnum:10; end %>
+        </li>
+        <li class="slide_content" style="">
+          <%= Rails.cache.fetch("frontpage_m/tab2-5", expires_in: 3.minutes + 44.seconds, race_condition_ttl: 15.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, bgid: "hobby", recnum:10; end %>
+        </li>
+        <li class="slide_content" style="">
+          <%= Rails.cache.fetch("frontpage_m/tab2-6", expires_in: 3.minutes + 45.seconds, race_condition_ttl: 15.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, bgid: "fanclub", recnum:10; end %>
+        </li>
+        <li class="slide_content">
+          <%= Rails.cache.fetch("frontpage_m/tab2-1", expires_in: 3.minutes + 40.seconds, race_condition_ttl: 15.seconds) do 
+            recent_posts1_widget title: nil, bid: nil, bgid: "main", recnum:10; end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="board_links">
+    <div class="board_in_groups">
+      <%= Rails.cache.fetch("frontpage_m/group1-1", expires_in: 3.minutes + 10.seconds, race_condition_ttl: 15.seconds) do 
+        board_list1_widget klass: "widget_board_list1", title: "기본게시판", bgid: "main", link: board_group_posts_path("main"); end %>
+    </div>
+    <div class="board_in_groups" style="">
+      <%= Rails.cache.fetch("frontpage_m/group1-2", expires_in: 3.minutes + 11.seconds, race_condition_ttl: 15.seconds) do 
+        board_list1_widget klass: "widget_board_list1", title: "재미공간", bgid: "humor", link: board_group_posts_path("humor"); end %>
+    </div>
+    <div class="board_in_groups" style="">
+      <%= Rails.cache.fetch("frontpage_m/group1-3", expires_in: 3.minutes + 12.seconds, race_condition_ttl: 15.seconds) do 
+        board_list1_widget klass: "widget_board_list1", title: "한류공간", bgid: "hanryu", link: board_group_posts_path("hanryu"); end %>
+    </div>
+    <div class="board_in_groups" style="">
+      <%= Rails.cache.fetch("frontpage_m/group1-4", expires_in: 3.minutes + 13.seconds, race_condition_ttl: 15.seconds) do 
+        board_list1_widget klass: "widget_board_list1", title: "소통공간", bgid: "info", link: board_group_posts_path("info"); end %>
+    </div>
+    <div class="board_in_groups" style="">
+      <%= Rails.cache.fetch("frontpage_m/group1-5", expires_in: 3.minutes + 14.seconds, race_condition_ttl: 15.seconds) do 
+        board_list1_widget klass: "widget_board_list1", title: "취미공유방", bgid: "hobby", link: board_group_posts_path("hobby"); end %>
+    </div>
+    <div class="board_in_groups" style="">
+      <%= Rails.cache.fetch("frontpage_m/group1-6", expires_in: 3.minutes + 15.seconds, race_condition_ttl: 15.seconds) do 
+        board_list1_widget klass: "widget_board_list1", title: "한류스타", bgid: "fanclub", link: board_group_posts_path("fanclub"); end %>
+    </li>
+</div>
+
+<script>
+  // 상단 탭바 
+  var tabslider = function(wrap_id) {
+    var tab_selected = function(n) {
+      $(wrap_id + " ul.slider-tab li a").removeClass("current");
+      $(wrap_id + " ul.slider-tab li:nth-child("+n+") a").addClass("current");
+    };    
+    var initComplete = function() {
+    }
+    var slider = $(wrap_id + " .touchslider").touchSlider({
+      page: 1,
+      controls: false, 
+      paging: false, 
+      btn_prev: false, 
+      btn_next: false, 
+      counter: function(page) {
+        tab_selected(page.current);
+      },
+      initComplete: initComplete
+    });
+    $(wrap_id + " ul.slider-tab li a").click(function(e) {
+      e.preventDefault();
+      var page = $(this).parent().prevAll().length;
+      if(slider[0]) slider[0].go_page(page);
+    }); 
+  }
+  //$(document).ready(function() {
+  $(document).on("turbolinks:load", function() {  
+    tabslider("#tab1");
+    tabslider("#tab2");
+  });
+</script>

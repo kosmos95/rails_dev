@@ -1,0 +1,30 @@
+<% if remotipart_submitted? %>
+  var remotipart_submitted = 1;
+<% end %>
+
+<% if @comment.errors.size == 0 %>
+  var cmtlist = $("#comments_list_<%=@comment.post_id %>");
+  var comment_id = '<%= @comment.id %>';
+  var parent = $("#comment_" + comment_id);
+  var html = "<%=j render partial:"comments/comment_item_body", locals: { comment: @comment } %>";
+
+  $('.comment_item_body', parent).html(html);
+
+  // reply form reset 
+  parent.find(".comment_form_reply form")[0].reset();
+  parent.find(".comment_form_reply").hide();
+  parent.find(".comment_item_action").css('display', 'block');
+
+  // reset reply event 
+  Comment.set_reply_form_event();
+
+  Comment.new_item_blink(comment_id);
+  
+<% elsif @comment.errors.any? %>  
+  var msgs = '<%= msgs=""; @comment.errors.full_messages.each { |msg| msgs += "- #{msg}\\n"; }; msgs %>';
+  notify(msgs);
+  
+<% else %>
+  notify("내용이 없습니다.");
+  
+<% end %>

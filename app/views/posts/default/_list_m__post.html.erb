@@ -1,0 +1,21 @@
+<% num = @total_count - ((@page - 1) * @recnum) - rec; 
+   param_bid = @bid;
+   bid = @bid || post.bid;
+   subj_highlighted = highlight(post.subject, @keyword&.split) %>
+<% has_image_icon = (!post.files_cnt.nil? && post.files_cnt > 0) ? '<span class="has_image"><i class="fa fa-picture-o" aria-hidden="true"></i></span>': "" %>
+<% cmtcnt = post.comment_cnt > 0 ? "<span class='cmtcnt'>[#{post.comment_cnt}]</span>": "" %>
+<% newicon = post.is_new ? "<span class='new'>new</span>": ""; %>
+<div class="listitem <%= (@post && post.id == @post.id) ? "current": "" %>" data-myacttype="goto" data-url="<%= board_post_path(bid, post.id, {page:@page}) %>">
+  <% post_url_opts = @page > 1 ? {page:@page} : {} %>
+  <div class="sbj">
+    <%= raw "&nbsp;" * post.depth.to_i * 5 %><a href="<%= board_post_path(bid, post.id, post_url_opts) %>"><%= subj_highlighted %></a><%= raw has_image_icon %><%= raw cmtcnt %><%= raw newicon %>
+  </div>
+  <div class="info">
+  <%= if param_bid.nil? then content_tag(:span, strcut(board_name_for(post.board_id)), class:"board_name") end %>
+    <span class="name"><div class="level_icon lv<%=user&.level%>"></div><%= post.nick %></span>
+    <span class="space">|</span>
+    <span class="hit"><%= post.hit %></span>
+    <span class="space">|</span>
+    <span class="date"><%= timestr(post.created_at, 4) %></span>
+  </div>
+</div>

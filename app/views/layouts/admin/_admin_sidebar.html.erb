@@ -1,0 +1,82 @@
+<aside class="main-sidebar">
+
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar" style="height: auto;">
+  
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu tree" data-widget="tree">
+      <li class="header">MAIN NAVIGATION</li>
+<% if current_user.admin_group? %>
+      <li class="treeview menu-open active">
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>기본설정</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+  <% if current_user.superadmin? %>
+          <li class=""><a href="/admin/settings/site"><i class="fa fa-circle-o"></i> 기본설정</a></li>
+          <li class=""><a href="/admin/sites"><i class="fa fa-circle-o"></i> 사이트</a></li>
+  <% end %>
+          <li class=""><a href="/admin/themes/theme"><i class="fa fa-circle-o"></i> Theme</a></li>
+          <li class=""><a href="/admin/menus"><i class="fa fa-circle-o"></i> 메뉴</a></li>
+          <!--<li class=""><a href="/admin/stats"><i class="fa fa-circle-o"></i> - 통계</a></li>
+          <li class=""><a href="/admin/pages"><i class="fa fa-circle-o"></i> - 페이지</a></li>-->
+        </ul>
+      </li>
+<% end %>
+
+<% if current_user.admin_group? || current_user.board_moderator? || current_user.has_moderating_boards? %>
+      <li class="treeview menu-open active">
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>게시판</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+  <% if current_user.admin? || current_user.board_moderator? %>
+          <li class=""><a href="/admin/board_groups"><i class="fa fa-circle-o"></i> 게시판 그룹 관리</a></li>
+          <li class=""><a href="/admin/boards"><i class="fa fa-circle-o"></i> 게시판 관리</a></li>
+  <% end %>
+  <% if current_user.admin? || current_user.board_moderator? || current_user.has_moderating_boards? %>
+          <li class=""><a href="/admin/posts"><i class="fa fa-circle-o"></i> 게시물 관리</a></li>
+  <% end %>
+          <li class=""><a href="/admin/posts"><i class="fa fa-circle-o"></i> - 댓글 관리</a></li>
+          <li class=""><a href="/admin/posts"><i class="fa fa-circle-o"></i> - 신고 관리</a></li>
+        </ul>
+      </li>
+<% end %>
+
+<% if current_user.admin_group? || current_user.user_moderator? %>
+      <li class="treeview menu-open active">
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>사용자</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+  <% if current_user.admin_group? %>
+          <li class=""><a href="/admin/user_groups"><i class="fa fa-circle-o"></i> 회원그룹</a></li>
+  <% end %>
+          <li class=""><a href="/admin/users"><i class="fa fa-circle-o"></i> 회원</a></li>
+          <li class=""><a href="/admin/user_logs"><i class="fa fa-circle-o"></i> 회원 로그</a></li>
+  <% if current_user.admin_group? %>
+          <li class=""><a href="/admin/levels"><i class="fa fa-circle-o"></i> 회원 레벨</a></li>
+  <% end %>
+          <li class=""><a href="/admin/point_logs"><i class="fa fa-circle-o"></i> 포인트 로그</a></li>
+        </ul>
+      </li>
+<% end %>
+
+    </ul>
+    
+  </section>
+  <!-- /.sidebar -->
+  
+</aside>

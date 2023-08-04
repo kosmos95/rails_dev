@@ -1,0 +1,2 @@
+module FaninfosHelper
+end

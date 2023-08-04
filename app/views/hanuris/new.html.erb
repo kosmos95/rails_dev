@@ -1,0 +1,19 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+        <li><%= link_to "한류링크", hanuris_path %></li>
+        <li class="active">새로 입력</li>
+      </ol>
+  </section>
+<% end %>
+
+<%= content_for :content_header %>
+
+<br>
+
+<h3> 새 한류링크 </h3>
+
+<br>
+
+<%= render 'form' %>

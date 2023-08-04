@@ -1,0 +1,52 @@
+<br>
+<br>
+
+<%- if devise_mapping.omniauthable? %>
+  <div>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+	  <% provider1 = provider.to_s %>
+      <%- next if provider1 == "facebook" ############### %>
+      <%- if provider1 == "google_oauth2" %>
+        <% provider1 = "google" %>
+      <% end %>
+      <%= link_to omniauth_authorize_path(resource_name, provider), class:"btn btn-block btn-social btn-#{provider1}", method: :post do %>
+        <% if provider1 == "facebook" %>
+          <i class="fa fa-<%= provider1 %>"></i>
+          <% sns = '페이스북' %>
+        <% elsif provider1 == "google" %>
+          <i class="fa fa-<%= provider1 %>"></i>
+          <% sns = '구글' %>
+        <% else %>
+          <img src="<%= asset_path("general/icons/kakao.png"); %>">
+          <% sns = '카카오' %>
+        <% end %>    
+        <%= provider1.camelcase %> 계정으로 로그인
+      <% end -%>
+    <% end -%>
+  </div>
+<% end -%>
+
+<br>
+<br>
+
+<%- if controller_name != 'sessions' %>
+  <%= link_to "로그인", new_session_path(resource_name) %><br />
+<% end -%>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "회원 가입", new_registration_path(resource_name) %><br />
+<% end -%>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "비밀번호 찾기", new_password_path(resource_name) %><br />
+<% end -%>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "이메일 인증 메일이 안올 때", new_confirmation_path(resource_name) %><br />
+<% end -%>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "계정이 잠겼을 때", new_unlock_path(resource_name) %><br />
+<% end -%>
+
+<br>

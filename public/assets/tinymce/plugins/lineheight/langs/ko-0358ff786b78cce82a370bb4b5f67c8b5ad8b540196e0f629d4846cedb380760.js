@@ -1,0 +1,1 @@
+tinymce.addI18n("ko",{"Line Height":"\uc904\uac04\uaca9"});

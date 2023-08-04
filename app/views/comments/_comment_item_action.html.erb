@@ -1,0 +1,17 @@
+  <div class="comment_item_action">
+    <%= link_to (raw '<i class="fa fa-thumbs-o-up"></i> 추천'), "javascript:void(0)", class:"thumbup", data: { parent_id:comment.id, parent_depth:comment.depth } %>
+    <% if comment.depth < 2 %>
+		<%= link_to (raw '<i class="fa fa-reply" aria-hidden="true"></i> 댓글'), "javascript:void(0)", class:"reply", data: { parent_id:comment.id, parent_depth:comment.depth } %>
+    <% end %>
+	<% if can? :update, comment or can? :destroy, comment %>
+	<span class="sp">|</span>
+	<% end %>
+    <% if can? :update, comment %>
+    <%= link_to (raw '<i class="fa fa-pencil-square-o"></i> 수정'), "javascript:void(0)", class:"modify", data: { parent_id:comment.id, parent_depth:comment.depth } %>
+    <% end %>    
+    <% if can? :destroy, comment %>
+	  <%= link_to (raw '<i class="fa fa-trash-o"></i> 삭제'), [comment.post, comment], method: :delete, remote: true, data: { confirm: "삭제할까요?" } %>
+    <% end %>
+	<span class="sp">|</span>
+    <%= link_to (raw '<i class="fa fa-hand-paper-o"></i> 신고'), "javascript:void(0)", class:"report", data: { parent_id:comment.id, parent_depth:comment.depth, target:"#reportModal" } %>	
+  </div>	

@@ -1,0 +1,18 @@
+/*
+*= require bootstrap
+*= require adminlte/adminlte
+*= require adminlte/skins/_all-skins
+*= require font-awesome  
+*/
+
+
+@import 'admin/basicinfo';
+@import 'admin/board';
+@import 'admin/levels';
+@import 'admin/posts';
+@import 'admin/setting';
+@import 'admin/users';
+
+@import 'admin/style';
+
+@import 'hcafe2/common.scss';
