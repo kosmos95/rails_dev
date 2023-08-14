@@ -38,10 +38,11 @@
       initTabMenu("tabmenu1");
     </script>  
   </div>
+
   
   <div class="col-md-6 col-xs-6 col-xs-v12">
-      <%#= Rails.cache.fetch("frontpage/notice-1", expires_in: 10.minutes + 40.seconds, race_condition_ttl: 15.seconds) do 
-        #recent_posts1_widget klass:"widget_recentposts2", title: "공지", gongji: 'gongji', recnum:10, 
+      <%#= Rails.cache.fetch("frontpage/notice-1", expires_in: 10.minutes + 40.seconds, race_condition_ttl: 15.seconds) do
+        #recent_posts1_widget klass:"widget_recentposts2", title: "공지", gongji: 'gongji', recnum:10,
         #  more_link: board_posts_path("gongji"), show_date:false;
       #end %>
     <div class="rightinfo">

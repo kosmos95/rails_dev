@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'kboard/index'
   #mount Railswiki::Engine, at: "/wiki"
 
   #root to: "railswiki/pages#show", id: "Home"
@@ -49,6 +50,8 @@ Rails.application.routes.draw do
   #get "/hanuris/:id" => "hanuris#show", as: "hanuris_show", id: /[1-9][0-9]*/
   get "/hanuris_countries" => "hanuris#country_index", as: "hanuris_country_index_all"
   get "/hanuris_countries/:id" => "hanuris#country_index", as: "hanuris_country_index", id: /[a-zA-Z]*/
+
+  get '/kboard', to:'kboard#index'
   
   # User ============================================================
 

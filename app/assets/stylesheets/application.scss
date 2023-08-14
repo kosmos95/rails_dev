@@ -1,1 +1,22 @@
+.navbar-default{
+  margin-bottom: 0;
+}
+
+.newNavbar {
+
+  height: 50px;
+  display: flex;
+  align-content: center;
+
+  ul
+  {padding: 25px 0;
+  margin: 0 auto;
+  display: flex;
+  width: 1080px;
+  height: 100px;}
+
+  li {
+    margin : 0 10px;
+  }
+}
 

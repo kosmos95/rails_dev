@@ -16,9 +16,9 @@ default: &default
   encoding: utf8mb4
   collation: utf8mb4_general_ci
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch("DB_USERNAME") { 'root' } %>
+  username: <%= ENV.fetch("DB_USERNAME") { 'admin' } %>
   #password: todwkdduawkd
-  password: <%= ENV.fetch("DB_PASSWORD") { 'todwkdduawkd' } %>
+  password: <%= ENV.fetch("DB_PASSWORD") { '2135' } %>
   #socket: /var/lib/mysql/mysql.sock
   host: 127.0.0.1
   port: 3306 
