@@ -1,0 +1,2 @@
+class NewMenu < ApplicationRecord
+end

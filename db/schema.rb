@@ -10,9 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_21_120310) do
+ActiveRecord::Schema.define(version: 2023_08_23_071317) do
 
-  create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "_postspaging_g0_b10_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b11_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b14_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b16_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b24_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b5_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b65_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b6_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b75_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b7_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b82_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g0_b9_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g2_b0_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g3_b0_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "_postspaging_g4_b0_k_ogid_r20_n0", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "gid", limit: 53, default: 0.0, null: false
+  end
+
+  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -22,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,7 +93,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "admin_users", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "admin_users", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", limit: 32, default: "", null: false
     t.string "encrypted_password", limit: 100, default: "", null: false
     t.string "reset_password_token", limit: 100
@@ -45,7 +105,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "board_groups", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "board_groups", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "bgid", limit: 16, null: false
     t.string "name", limit: 32
     t.string "short_name", limit: 10
@@ -54,7 +114,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["bgid"], name: "index_board_groups_on_bgid", unique: true
   end
 
-  create_table "boards", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "boards", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "bid", limit: 16
     t.string "name", limit: 32
     t.string "short_name", limit: 10
@@ -62,7 +122,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.integer "board_group_id"
     t.integer "display", limit: 1, default: 1, null: false
     t.integer "hidden", limit: 1, default: 0, null: false
-    t.integer "arrange", default: 0
+    t.integer "arrange", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "minlevel_index", limit: 1, default: 0
@@ -71,18 +131,18 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.integer "minlevel_download", limit: 1, default: 0
     t.index ["bid"], name: "index_boards_on_bid", unique: true
     t.index ["board_group_id"], name: "index_boards_on_board_group_id"
-    t.index ["display"], name: "index_boards_on_display"
-    t.index ["hidden"], name: "index_boards_on_hidden"
+    t.index ["display"], name: "display"
+    t.index ["hidden"], name: "hidden"
   end
 
-  create_table "comment_favors", charset: "utf8mb4", force: :cascade do |t|
+  create_table "comment_favors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "comment_id"
     t.integer "favored_user_id"
     t.index ["comment_id"], name: "index_comment_favors_on_comment_id"
     t.index ["favored_user_id"], name: "index_comment_favors_on_favored_user_id"
   end
 
-  create_table "comments", primary_key: ["id", "board_id"], charset: "utf8mb4", options: "ENGINE=InnoDB\n PARTITION BY HASH (`board_id`)\nPARTITIONS 300", force: :cascade do |t|
+  create_table "comments", primary_key: ["id", "board_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", options: "ENGINE=InnoDB\n/*!50100 PARTITION BY HASH (`board_id`)\nPARTITIONS 300 */", force: :cascade do |t|
     t.integer "id", null: false, auto_increment: true
     t.integer "gid"
     t.integer "board_id", null: false
@@ -113,7 +173,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "custom_fields", charset: "utf8mb4", force: :cascade do |t|
+  create_table "custom_fields", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "object_class"
     t.string "name"
     t.string "slug"
@@ -130,7 +190,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["slug"], name: "index_custom_fields_on_slug"
   end
 
-  create_table "custom_fields_relationships", charset: "utf8mb4", force: :cascade do |t|
+  create_table "custom_fields_relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "objectid"
     t.integer "custom_field_id"
     t.integer "term_order"
@@ -143,7 +203,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["objectid"], name: "index_custom_fields_relationships_on_objectid"
   end
 
-  create_table "exceptions", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "exceptions", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "class_name"
     t.text "status"
     t.text "message"
@@ -156,7 +216,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "fansite_comments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "fansite_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "fansite_id"
     t.bigint "user_id"
     t.string "content"
@@ -166,7 +226,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["user_id"], name: "index_fansite_comments_on_user_id"
   end
 
-  create_table "fansites", charset: "utf8mb4", force: :cascade do |t|
+  create_table "fansites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
     t.string "site_type"
@@ -184,8 +244,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["user_id"], name: "index_fansites_on_user_id"
   end
 
-  create_table "hanuris", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "hanuris", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.string "country"
     t.string "url1"
@@ -193,15 +252,16 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.string "url3"
     t.string "image"
     t.text "description"
-    t.string "url_info"
-    t.string "sns_urls"
-    t.boolean "hidden", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "url_info"
+    t.text "sns_urls"
+    t.boolean "hidden", default: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_hanuris_on_user_id"
   end
 
-  create_table "identities", charset: "utf8mb4", force: :cascade do |t|
+  create_table "identities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "provider"
     t.string "uid"
@@ -209,7 +269,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "images", charset: "utf8mb4", force: :cascade do |t|
+  create_table "images", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "alt"
     t.integer "hint", default: 0
     t.string "file"
@@ -218,7 +278,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["hint"], name: "index_images_on_hint"
   end
 
-  create_table "levels", charset: "utf8mb4", force: :cascade do |t|
+  create_table "levels", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "site_id"
     t.integer "level"
     t.string "name", limit: 32
@@ -231,7 +291,33 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "menu_items", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "lv_scrap_books", id: { type: :integer, unsigned: true }, charset: "utf8mb3", options: "ENGINE=MyISAM", force: :cascade do |t|
+    t.string "bbsid", null: false
+    t.string "name", null: false
+    t.string "categories", null: false
+    t.timestamp "created_at", null: false
+    t.timestamp "updated_at", null: false
+    t.index ["bbsid"], name: "boards_bbsid_unique", unique: true
+  end
+
+  create_table "lv_scraps", id: :integer, charset: "utf8mb3", options: "ENGINE=MyISAM", force: :cascade do |t|
+    t.string "date", limit: 10
+    t.string "title"
+    t.text "content"
+    t.text "content_text"
+    t.text "orig_content"
+    t.integer "point"
+    t.string "medium", limit: 50
+    t.string "keywords"
+    t.string "slug", limit: 50, null: false
+    t.string "original_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "image_saved_at"
+    t.index ["slug"], name: "slug", unique: true
+  end
+
+  create_table "menu_items", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "menu_id"
     t.integer "parent_id"
     t.string "url"
@@ -244,7 +330,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["menu_id"], name: "index_menu_items_on_menu_id"
   end
 
-  create_table "menus", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "menus", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 32
     t.text "content"
     t.datetime "created_at", null: false
@@ -254,17 +340,24 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["site_id"], name: "index_menus_on_site_id"
   end
 
-  create_table "metas", charset: "utf8mb4", force: :cascade do |t|
+  create_table "metas", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "key"
     t.text "value", size: :long
     t.integer "objectid"
     t.string "object_class"
-    t.index ["key"], name: "index_metas_on_key"
-    t.index ["object_class"], name: "index_metas_on_object_class"
+    t.index ["key"], name: "index_metas_on_key", length: 191
+    t.index ["object_class"], name: "index_metas_on_object_class", length: 191
     t.index ["objectid"], name: "index_metas_on_objectid"
   end
 
-  create_table "point_logs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "new_menus", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "point_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.integer "by_user_id", default: 0, null: false
     t.integer "point", default: 0, null: false
@@ -273,34 +366,34 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["user_id"], name: "index_point_logs_on_user_id"
   end
 
-  create_table "post_favors", charset: "utf8mb4", force: :cascade do |t|
+  create_table "post_favors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "post_id"
     t.integer "favored_user_id"
     t.index ["favored_user_id"], name: "index_post_favors_on_favored_user_id"
     t.index ["post_id"], name: "index_post_favors_on_post_id"
   end
 
-  create_table "post_indices", primary_key: "post_id", id: :integer, default: nil, charset: "utf8mb4", force: :cascade do |t|
+  create_table "post_indices", primary_key: "post_id", id: :integer, default: nil, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.float "gid", limit: 53, default: 0.0, null: false
     t.integer "board_id", null: false
     t.integer "board_group_id", default: 0, null: false
-    t.integer "user_id", default: 0, null: false
+    t.integer "user_id"
     t.integer "site_id", null: false
     t.integer "notice", limit: 1, default: 0, null: false
-    t.boolean "deleted", default: false, null: false
     t.string "category", limit: 30
+    t.boolean "deleted", default: false, null: false
     t.index ["board_group_id"], name: "index_post_indices_on_board_group_id"
     t.index ["board_id"], name: "index_post_indices_on_board_id"
-    t.index ["category"], name: "index_post_indices_on_category"
+    t.index ["category"], name: "category"
     t.index ["deleted"], name: "index_post_indices_on_deleted"
     t.index ["gid"], name: "index_post_indices_on_gid"
     t.index ["notice"], name: "index_post_indices_on_notice"
     t.index ["post_id"], name: "index_post_indices_on_post_id"
     t.index ["site_id"], name: "index_post_indices_on_site_id"
-    t.index ["user_id"], name: "index_post_indices_on_user_id"
+    t.index ["user_id"], name: "user_id"
   end
 
-  create_table "posts", primary_key: ["id", "board_id"], charset: "utf8mb4", options: "ENGINE=InnoDB\n PARTITION BY HASH (`board_id`)\nPARTITIONS 300", force: :cascade do |t|
+  create_table "posts", primary_key: ["id", "board_id"], charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", options: "ENGINE=InnoDB\n/*!50100 PARTITION BY HASH (`board_id`)\nPARTITIONS 300 */", force: :cascade do |t|
     t.integer "id", null: false, auto_increment: true
     t.float "gid", limit: 53, default: 0.0, null: false
     t.integer "board_group_id", default: 0, null: false
@@ -315,14 +408,13 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.string "name", limit: 32
     t.string "nick", limit: 32
     t.string "subject", limit: 100
-    t.text "content", size: :medium
     t.string "category", limit: 32
     t.string "html", limit: 4, default: "html", null: false
+    t.text "content", size: :medium, null: false
     t.string "tag", limit: 191
-    t.string "source"
-    t.string "string"
     t.string "files", limit: 191
     t.integer "files_cnt", default: 0, null: false
+    t.string "source", limit: 191
     t.integer "hit", default: 0, null: false
     t.integer "favor_cnt", default: 0, null: false
     t.integer "unfavor_cnt", default: 0, null: false
@@ -340,11 +432,11 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["gid"], name: "index_posts_on_gid"
     t.index ["hidden"], name: "index_posts_on_hidden"
     t.index ["notice"], name: "index_posts_on_notice"
-    t.index ["site_id"], name: "index_posts_on_site_id"
+    t.index ["site_id"], name: "site_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "reportabuses", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "reportabuses", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "target_type", default: 0, null: false
     t.integer "target_id"
@@ -355,18 +447,18 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "roles", charset: "utf8mb4", force: :cascade do |t|
+  create_table "roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 32
-    t.string "resource_type"
+    t.string "resource_type", limit: 191
     t.bigint "resource_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name", "resource_id"], name: "index_roles_on_name_and_resource_id"
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["name"], name: "index_roles_on_name"
-    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
-  create_table "secure_tokens", charset: "utf8mb4", force: :cascade do |t|
+  create_table "secure_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.string "token"
     t.datetime "created_at", null: false
@@ -374,7 +466,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["user_id"], name: "index_secure_tokens_on_user_id", unique: true
   end
 
-  create_table "settings", charset: "utf8mb4", force: :cascade do |t|
+  create_table "settings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "var", limit: 32, null: false
     t.text "value"
     t.datetime "created_at", null: false
@@ -382,7 +474,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
-  create_table "sites", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "sites", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 32
     t.string "slug", limit: 191
     t.string "description", limit: 191
@@ -390,7 +482,36 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "term_relationships", charset: "utf8mb4", force: :cascade do |t|
+  create_table "sph_counter", primary_key: "counter_id", id: :integer, default: nil, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "max_doc_id", null: false
+  end
+
+  create_table "taggings", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "tag_id"
+    t.string "taggable_type", limit: 32
+    t.integer "taggable_id"
+    t.string "tagger_type", limit: 32
+    t.integer "tagger_id"
+    t.string "context", limit: 128
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+  end
+
+  create_table "tags", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", collation: "utf8mb3_bin"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "term_relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "objectid"
     t.integer "term_order"
     t.bigint "term_taxonomy_id"
@@ -399,7 +520,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["term_taxonomy_id"], name: "index_term_relationships_on_term_taxonomy_id"
   end
 
-  create_table "term_taxonomy", charset: "utf8mb4", force: :cascade do |t|
+  create_table "term_taxonomy", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "taxonomy"
     t.text "description", size: :long
     t.integer "parent_id"
@@ -417,7 +538,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["term_order"], name: "index_term_taxonomy_on_term_order"
   end
 
-  create_table "user_data", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_data", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "mailing", default: true, null: false
     t.integer "point"
@@ -432,13 +553,13 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["user_id"], name: "index_user_data_on_user_id"
   end
 
-  create_table "user_groups", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_groups", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 32
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_logs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "success", default: true, null: false
     t.string "event_name", limit: 16
@@ -451,7 +572,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["user_id"], name: "index_user_logs_on_user_id"
   end
 
-  create_table "users", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", id: :integer, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", limit: 32, default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nick", limit: 32, default: "", null: false
@@ -487,7 +608,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_120310) do
     t.index ["user_group_id"], name: "index_users_on_user_group_id"
   end
 
-  create_table "users_roles", id: false, charset: "utf8mb4", force: :cascade do |t|
+  create_table "users_roles", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "role_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
