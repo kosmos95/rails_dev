@@ -183,12 +183,11 @@ var is_darkmode = <%= !!darkmode? %>;
   <!-- //nav end -->
   <div class="newNavbar">
     <ul>
-    <li>유머와 공감</li>
-    <li>한류공간</li>
-    <li>정보와 소통</li>
-     <li>취미 공유방</li>
-      <li>공지</li>
-    <li></li>
+    <% @menus.each do |menu| %>
+        <li>
+           <a href="<%= menu.link %>"><%= menu.name %></a>
+        </li>
+      <% end %>
   </ul></div>
 
   <!-- main start -->

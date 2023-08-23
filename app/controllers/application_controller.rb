@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   
   layout :default_layout
   
-  before_action :check_pcmode_params, :check_darkmode_params
+  before_action :check_pcmode_params, :check_darkmode_params, :load_menus
   
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -189,5 +189,11 @@ class ApplicationController < ActionController::Base
         logger.warn "#{path} - #{response.status} - #{request.headers['HTTP_REFERER']} - #{request.headers['HTTP_USER_AGENT']}"
       end 
     end 
+
+
+  private
+    def load_menus
+     @menus = NewMenu.all
+    end
 
 end
