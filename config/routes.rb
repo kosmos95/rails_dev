@@ -176,6 +176,9 @@ Rails.application.routes.draw do
       get 'theme'
       patch 'theme_saved'
     end
+
+    get 'new_menus' => 'new_menus#index'
+
     
   end
 
